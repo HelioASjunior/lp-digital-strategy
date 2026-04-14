@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yas Assis — Estratégia e Posicionamento Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --k:#1F1F1F;
+  --w:#F8F7F5;
+  --b:#F5F1EA;
+  --g:#6D6D6D;
+  --y:#E7FF3B;
+  --a:#5A709C;
+  --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --pad:clamp(24px,5.5vw,88px);
+  --max:1320px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--w);color:var(--k);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  height:52px;padding:0 var(--pad);
+  background:var(--k);border-bottom:1px solid #2c2c2c;
+  transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.nav-logo{font-weight:900;font-size:17px;letter-spacing:-.03em;text-transform:uppercase;color:var(--w)}
+.nav-logo b{color:var(--y)}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#D7D7D7;transition:color .2s}
+.nav-links a:hover{color:var(--y)}
+.nav-btn{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);background:var(--y);padding:9px 22px;transition:opacity .2s;white-space:nowrap}
+.nav-btn:hover{opacity:.85}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--w);transition:all .3s}
+
+/* HERO */
+#hero{background:var(--k);min-height:100vh;display:grid;grid-template-rows:1fr auto;padding-top:52px;overflow:hidden}
+.hero-main{
+  display:grid;grid-template-columns:1fr 1fr;align-items:end;
+  padding:clamp(56px,8vw,120px) var(--pad) clamp(40px,5vw,72px);
+  gap:40px;max-width:var(--max);margin:0 auto;width:100%;
+}
+.hero-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--y);margin-bottom:28px;display:block;opacity:0;animation:fu .6s .1s cubic-bezier(.16,1,.3,1) forwards}
+.hero-h1{font-weight:900;font-size:clamp(80px,13vw,200px);letter-spacing:-.045em;line-height:.85;text-transform:uppercase;color:var(--w);opacity:0;animation:fu .8s .2s cubic-bezier(.16,1,.3,1) forwards}
+.hero-h1 .acc{color:var(--y)}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:8px;opacity:0;animation:fu .7s .4s cubic-bezier(.16,1,.3,1) forwards}
+.hero-serif{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,28px);color:#D4CFC2;line-height:1.35;margin-bottom:36px}
+.hero-right p{font-size:13px;line-height:1.65;color:#C4BFB2;max-width:320px;margin-bottom:32px}
+.hero-cta-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.btn-y{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);background:var(--y);padding:13px 28px;transition:opacity .2s;display:inline-block}
+.btn-y:hover{opacity:.85}
+.btn-ghost{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#D2D2D2;border-bottom:1px solid #7A7A7A;padding-bottom:2px;transition:color .2s,border-color .2s}
+.btn-ghost:hover{color:var(--w);border-color:var(--w)}
+.hero-bar{
+  border-top:1px solid #2c2c2c;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px var(--pad);max-width:var(--max);margin:0 auto;width:100%;
+  opacity:0;animation:fu .6s .6s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-bar-left{display:flex;align-items:center;gap:32px}
+.hero-bar-stat{display:flex;flex-direction:column;gap:4px}
+.hero-bar-num{font-size:clamp(20px,2.5vw,32px);font-weight:900;letter-spacing:-.03em;color:var(--w)}
+.hero-bar-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444}
+.hero-bar-div{width:1px;height:32px;background:#2c2c2c}
+.hero-scroll{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#444;display:flex;align-items:center;gap:10px;transition:color .2s}
+.hero-scroll:hover{color:var(--y)}
+.hero-scroll::before{content:'';display:block;width:28px;height:1px;background:currentColor}
+
+/* MARQUEE */
+.marquee-wrap{background:var(--y);overflow:hidden;padding:13px 0}
+.marquee-track{display:flex;white-space:nowrap;animation:mq 22s linear infinite;width:max-content}
+.marquee-item{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--k);padding:0 28px;display:flex;align-items:center;gap:28px}
+.marquee-item::after{content:'·';opacity:.4}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.wrap{max-width:var(--max);margin:0 auto;padding:clamp(80px,10vw,160px) var(--pad)}
+.wrap-sm{max-width:var(--max);margin:0 auto;padding:clamp(64px,8vw,120px) var(--pad)}
+.sec-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:24px}
+.sec-tag-dim{color:#444}
+
+/* SOBRE */
+#sobre{background:var(--w)}
+.sobre-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:start}
+.sobre-h2{font-size:clamp(52px,7.5vw,108px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--k)}
+.sobre-h2 mark{background:var(--k);color:var(--y);padding:0 6px;font-style:normal}
+.div-y{width:40px;height:2px;background:var(--y);margin:32px 0}
+.sobre-quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,30px);line-height:1.3;color:var(--k);margin-bottom:28px}
+.sobre-body{font-size:clamp(14px,1.4vw,17px);line-height:1.7;color:var(--g);margin-bottom:16px}
+.steps-list{margin-top:40px;border-top:1px solid #e0ddd6}
+.step-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid #e0ddd6;cursor:default;transition:padding-left .2s}
+.step-row:hover{padding-left:8px}
+.step-row:hover .step-name{color:var(--k)}
+.step-name{font-size:clamp(14px,1.6vw,19px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:#bbb;transition:color .2s}
+.step-row.on .step-name{color:var(--k)}
+.step-num{font-family:var(--serif);font-size:13px;font-style:italic;color:#ccc}
+.step-row.on .step-num{color:var(--y)}
+
+/* ENTREGA */
+#entrega{background:var(--k)}
+.entrega-top{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+.entrega-h2{font-size:clamp(48px,7.5vw,108px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
+.entrega-desc{font-size:clamp(13px,1.4vw,16px);line-height:1.7;color:#B4B4B4;padding-bottom:4px}
+.entrega-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.e-card{background:#252525;padding:clamp(32px,4vw,52px) clamp(24px,3vw,40px);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;transition:background .25s}
+.e-card:hover{background:#2e2e2e}
+.e-card.hl{background:var(--y)}
+.e-card-n{font-family:var(--serif);font-size:13px;font-style:italic;color:#444}
+.e-card.hl .e-card-n{color:#888}
+.e-card-h{font-size:clamp(32px,4vw,56px);font-weight:900;letter-spacing:-.03em;line-height:.92;text-transform:uppercase;color:var(--w);margin:auto 0 0}
+.e-card.hl .e-card-h{color:var(--k)}
+.e-card-p{font-size:13px;line-height:1.6;color:#B8B8B8;margin-top:20px}
+.e-card.hl .e-card-p{color:#555}
+
+/* MÉTODO */
+#metodo{background:var(--b)}
+#metodo .wrap{max-width:1480px;padding-left:clamp(16px,3vw,40px);padding-right:clamp(16px,3vw,40px)}
+.metodo-top{display:grid;grid-template-columns:6fr 6fr;gap:40px;align-items:end;margin-bottom:clamp(56px,7vw,96px)}
+.metodo-h2{font-size:clamp(52px,8vw,120px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--k)}
+.metodo-intro{font-size:clamp(14px,1.5vw,18px);line-height:1.65;color:var(--g)}
+.metodo-steps{display:grid;grid-template-columns:repeat(5,minmax(250px,1fr));gap:10px;max-width:1460px;margin:0 auto;justify-content:center}
+.m-step{background:var(--w);padding:clamp(28px,3.5vw,48px) clamp(20px,2.5vw,32px);min-height:380px;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid transparent;transition:border-color .25s,background .25s}
+.m-step:hover{border-top-color:var(--y)}
+.m-step.pivot{background:var(--k);border-top-color:var(--y)}
+.m-step-top{display:flex;justify-content:space-between;align-items:flex-start}
+.m-step-n{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--k)}
+.m-step.pivot .m-step-n{color:var(--y)}
+.m-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--y);color:var(--k);padding:4px 8px}
+.m-step-h{font-size:clamp(22px,2.15vw,34px);font-weight:900;letter-spacing:-.02em;line-height:.98;text-transform:uppercase;color:var(--k);margin:32px 0 16px;overflow-wrap:anywhere;word-break:break-word}
+.m-step.pivot .m-step-h{color:var(--w)}
+.m-step-p{font-size:13px;line-height:1.6;color:var(--g);margin-top:auto}
+.m-step.pivot .m-step-p{color:#666}
+
+/* PÚBLICO */
+#publico{background:var(--w)}
+.publico-h2{font-size:clamp(64px,10vw,150px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--k);margin:20px 0 clamp(24px,3vw,40px)}
+.publico-lead{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,28px);color:var(--g);line-height:1.4;max-width:680px;margin-bottom:clamp(48px,6vw,80px)}
+.publico-cols{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.pub-col{padding:clamp(36px,4.5vw,60px)}
+.pub-col.dark{background:var(--k)}
+.pub-col.light{background:var(--b);border:1px solid #e0ddd6}
+.pub-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:32px;display:block}
+.pub-col.dark .pub-label{color:var(--y)}
+.pub-col.light .pub-label{color:var(--g)}
+.pub-list{list-style:none}
+.pub-item{font-size:clamp(15px,1.7vw,20px);font-weight:700;letter-spacing:-.01em;line-height:1.2;padding:16px 0;border-bottom:1px solid}
+.pub-col.dark .pub-item{color:var(--w);border-color:#2c2c2c}
+.pub-col.light .pub-item{color:var(--k);border-color:#e0ddd6}
+.pub-item:last-child{border-bottom:none;padding-bottom:0}
+
+/* TOM */
+#tom{background:var(--k)}
+.tom-top{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,80px);align-items:start;margin-bottom:clamp(56px,7vw,96px)}
+.tom-h2{font-size:clamp(52px,8vw,120px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
+.tom-desc{font-size:clamp(14px,1.5vw,18px);line-height:1.65;color:#B4B4B4;margin-bottom:16px}
+.tom-cols{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
+.tom-block{padding:clamp(32px,4vw,48px)}
+.tom-block.t-sim{background:#222}
+.tom-block.t-nao{background:#1a1a1a;border:1px solid #252525}
+.tom-bl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px;display:block}
+.tom-block.t-sim .tom-bl{color:var(--y)}
+.tom-block.t-nao .tom-bl{color:#444}
+.tom-phrases{list-style:none}
+.tom-ph{font-family:var(--serif);font-size:clamp(16px,1.9vw,22px);font-style:italic;line-height:1.35;padding:14px 0;border-bottom:1px solid}
+.tom-block.t-sim .tom-ph{color:var(--w);border-color:#2c2c2c}
+.tom-block.t-nao .tom-ph{color:#444;border-color:#222;text-decoration:line-through;text-decoration-color:#333}
+.tom-ph:last-child{border-bottom:none;padding-bottom:0}
+.regras-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.regra{padding:clamp(24px,3vw,36px);background:#1a1a1a}
+.regra-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;display:block}
+.r-usar .regra-label{color:var(--y)}
+.r-evitar .regra-label{color:#555}
+.r-nunca .regra-label{color:#7a3535}
+.regra-list{list-style:none}
+.regra-item{font-size:13px;line-height:1.45;color:#B0B0B0;padding:10px 0;border-bottom:1px solid #242424}
+.regra-item:last-child{border-bottom:none;padding-bottom:0}
+
+/* MANIFESTO */
+#manifesto{background:var(--b)}
+.manifesto-inner{display:grid;grid-template-columns:48px 1fr;gap:40px;align-items:center}
+.manifesto-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);writing-mode:vertical-rl;transform:rotate(180deg);align-self:flex-start;margin-top:4px}
+.manifesto-text{font-family:var(--serif);font-size:clamp(28px,4.5vw,64px);font-style:italic;font-weight:500;line-height:1.2;color:var(--k)}
+.manifesto-text em{font-style:normal;font-weight:600;background:var(--k);color:var(--y);padding:2px 8px}
+.manifesto-attr{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-top:36px;display:block}
+
+/* CTA */
+#cta{background:var(--y);overflow:hidden}
+.cta-inner{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:center;padding:clamp(80px,12vw,180px) var(--pad);max-width:1400px;margin:0 auto}
+.cta-h2{font-size:clamp(64px,11vw,160px);font-weight:900;letter-spacing:-.045em;line-height:.85;text-transform:uppercase;color:var(--k)}
+.cta-serif{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,26px);color:#666;margin-top:24px;display:block}
+.cta-side{display:flex;flex-direction:column;gap:16px;align-items:stretch}
+.btn-k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--w);background:var(--k);padding:15px 28px;transition:opacity .2s;display:inline-block;text-align:center}
+.btn-k:hover{opacity:.8}
+.btn-ok{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);border:1.5px solid var(--k);padding:14px 28px;transition:background .2s,color .2s;display:inline-block;text-align:center}
+.btn-ok:hover{background:var(--k);color:var(--y)}
+.cta-contact{display:flex;flex-direction:column;gap:12px;max-width:560px;width:100%;background:#F2FB7A;border:1.5px solid #1f1f1f;padding:18px}
+.cta-contact-head{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1f1f1f}
+.cta-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cta-field{display:flex;flex-direction:column;gap:6px}
+.cta-field label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#313131}
+.cta-contact input,.cta-contact select,.cta-contact textarea{width:100%;min-width:0;border:1.5px solid #1f1f1f;background:#FBFFD0;padding:10px 12px;font-size:14px;color:var(--k);outline:none;font-family:var(--sans)}
+.cta-contact input,.cta-contact select{height:44px}
+.cta-contact textarea{min-height:92px;resize:vertical}
+.cta-contact input::placeholder{color:#4A4A4A}
+.cta-contact select:focus,.cta-contact textarea:focus,.cta-contact input:focus{box-shadow:0 0 0 2px rgba(31,31,31,.15)}
+.cta-contact button{height:46px;border:none;background:var(--k);color:var(--w);padding:0 16px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.cta-contact button:hover{opacity:.88}
+.cta-contact-note{font-size:12px;line-height:1.4;color:#3C3C3C}
+
+/* FOOTER */
+footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4vw,48px)}
+.footer-top{display:grid;grid-template-columns:4fr 2fr 2fr 4fr;gap:40px;max-width:var(--max);margin:0 auto;padding-bottom:clamp(40px,5vw,64px);border-bottom:1px solid #2c2c2c}
+.footer-logo{font-size:26px;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:var(--w);line-height:1;margin-bottom:16px}
+.footer-logo b{color:var(--y)}
+.footer-tagline{font-family:var(--serif);font-style:italic;font-size:16px;color:#D1C9BA;line-height:1.4}
+.footer-col-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B8B8B8;margin-bottom:20px;display:block}
+.footer-nav{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-nav a{font-size:13px;font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:#E3E3E3;transition:color .2s}
+.footer-nav a:hover{color:var(--w)}
+.footer-sign{background:#161616;padding:24px;display:flex;flex-direction:column;gap:12px}
+.footer-sign-h{font-size:14px;font-weight:900;letter-spacing:-.01em;text-transform:uppercase;color:var(--w)}
+.footer-sign-p{font-size:12px;line-height:1.5;color:#555}
+.footer-sign-btn{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);background:var(--y);padding:10px 16px;text-align:center;display:block;margin-top:4px;transition:opacity .2s}
+.footer-sign-btn:hover{opacity:.85}
+.footer-bottom{max-width:var(--max);margin:24px auto 0;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:11px;color:#B5B5B5;letter-spacing:.04em}
+.footer-badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--y)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.vi{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+@keyframes fu{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-main{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .sobre-grid{grid-template-columns:1fr}
+  .entrega-top{grid-template-columns:1fr}
+  .entrega-cards{grid-template-columns:1fr 1fr}
+  .metodo-top{grid-template-columns:1fr}
+  .metodo-steps{grid-template-columns:repeat(2,minmax(240px,1fr));max-width:980px}
+  .publico-cols{grid-template-columns:1fr}
+  .tom-top{grid-template-columns:1fr}
+  .tom-cols{grid-template-columns:1fr}
+  .regras-grid{grid-template-columns:1fr}
+  .cta-inner{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-top > div:first-child,.footer-top > div:last-child{grid-column:1/-1}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .manifesto-inner{grid-template-columns:auto 1fr;gap:20px}
+}
+@media(max-width:580px){
+  .entrega-cards{grid-template-columns:1fr}
+  .metodo-steps{grid-template-columns:minmax(0,1fr);max-width:420px}
+  .cta-contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-top > div{grid-column:auto}
+  .hero-bar{flex-direction:column;align-items:flex-start;gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Yas<b>.</b></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Identidade</a></li>
+    <li><a href="#entrega">Entregas</a></li>
+    <li><a href="#metodo">Método</a></li>
+    <li><a href="#publico">Público</a></li>
+    <li><a href="#tom">Tom de Voz</a></li>
+  </ul>
+  <a href="#cta" class="nav-btn">Começar</a>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-main">
+    <div>
+      <span class="hero-tag">Manual de Marca — Estratégia Digital</span>
+      <h1 class="hero-h1">YAS<br><span class="acc">ASSIS.</span></h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-serif">"Clareza vem antes do conteúdo."</p>
+      <p>Estratégia e posicionamento digital para marcas que precisam de direção — não de mais conteúdo.</p>
+      <div class="hero-cta-row">
+        <a href="#metodo" class="btn-y">Ver o método</a>
+        <a href="#sobre" class="btn-ghost">Sobre a marca</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-bar">
+    <div class="hero-bar-left">
+      <div class="hero-bar-stat">
+        <span class="hero-bar-num">5</span>
+        <span class="hero-bar-label">Etapas do método</span>
+      </div>
+      <div class="hero-bar-div"></div>
+      <div class="hero-bar-stat">
+        <span class="hero-bar-num">3</span>
+        <span class="hero-bar-label">Entregas centrais</span>
+      </div>
+      <div class="hero-bar-div"></div>
+      <div class="hero-bar-stat">
+        <span class="hero-bar-num" style="color:var(--y)">01</span>
+        <span class="hero-bar-label">Sistema visual</span>
+      </div>
+    </div>
+    <a href="#sobre" class="hero-scroll">Explorar</a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Estratégia</span>
+    <span class="marquee-item">Posicionamento</span>
+    <span class="marquee-item">Clareza</span>
+    <span class="marquee-item">Direção</span>
+    <span class="marquee-item">Identidade</span>
+    <span class="marquee-item">Destravação</span>
+    <span class="marquee-item">Consistência</span>
+    <span class="marquee-item">Método</span>
+    <span class="marquee-item">Estratégia</span>
+    <span class="marquee-item">Posicionamento</span>
+    <span class="marquee-item">Clareza</span>
+    <span class="marquee-item">Direção</span>
+    <span class="marquee-item">Identidade</span>
+    <span class="marquee-item">Destravação</span>
+    <span class="marquee-item">Consistência</span>
+    <span class="marquee-item">Método</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="wrap">
+    <div class="sobre-grid">
+      <div>
+        <span class="sec-tag rv">Seção 01</span>
+        <h2 class="sobre-h2 rv d1">IDENTI<br>DADE<br>DA<br><mark>MARCA.</mark></h2>
+      </div>
+      <div>
+        <p class="sobre-quote rv">Yas Assis é uma marca de estratégia e posicionamento digital.</p>
+        <div class="div-y rv d1"></div>
+        <p class="sobre-body rv d1">Trabalha com marcas que precisam de clareza para se comunicar com intenção e consistência. O foco é destravar a comunicação.</p>
+        <p class="sobre-body rv d2">Ajudar marcas a entenderem quem são, o que querem dizer e como dizer. Antes de qualquer post. Antes de qualquer conteúdo.</p>
+        <div class="steps-list rv d3">
+          <div class="step-row on">
+            <span class="step-name">Destravar</span>
+            <span class="step-num">01</span>
+          </div>
+          <div class="step-row">
+            <span class="step-name">Clarear</span>
+            <span class="step-num">02</span>
+          </div>
+          <div class="step-row">
+            <span class="step-name">Estruturar</span>
+            <span class="step-num">03</span>
+          </div>
+          <div class="step-row">
+            <span class="step-name">Direcionar</span>
+            <span class="step-num">04</span>
+          </div>
+          <div class="step-row">
+            <span class="step-name">Aplicar</span>
+            <span class="step-num">05</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREGA -->
+<section id="entrega">
+  <div class="wrap">
+    <div class="entrega-top">
+      <div>
+        <span class="sec-tag sec-tag-dim rv">Seção 02</span>
+        <h2 class="entrega-h2 rv d1">O QUE<br>A MARCA<br>ENTREGA.</h2>
+      </div>
+      <div style="display:flex;align-items:flex-end">
+        <p class="entrega-desc rv d2">Cada entrega existe para garantir que a comunicação tenha base antes de ter forma. Sem atalhos.</p>
+      </div>
+    </div>
+    <div class="entrega-cards">
+      <div class="e-card hl rv">
+        <span class="e-card-n">01</span>
+        <div>
+          <h3 class="e-card-h">Clareza.</h3>
+          <p class="e-card-p">Saber exatamente o que comunicar e por quê. Sem ruído. Sem dúvida.</p>
+        </div>
+      </div>
+      <div class="e-card rv d1">
+        <span class="e-card-n">02</span>
+        <div>
+          <h3 class="e-card-h">Direção.</h3>
+          <p class="e-card-p">Um caminho estruturado para a comunicação. Decisão com propósito.</p>
+        </div>
+      </div>
+      <div class="e-card rv d2">
+        <span class="e-card-n">03</span>
+        <div>
+          <h3 class="e-card-h">Destr-avação.</h3>
+          <p class="e-card-p">Sair da paralisia e agir com segurança. Consistência que nasce da clareza.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section id="metodo">
+  <div class="wrap">
+    <div class="metodo-top">
+      <div>
+        <span class="sec-tag rv">Seção 03</span>
+        <h2 class="metodo-h2 rv d1">MÉTODO<br>DESTR-<br>AVAÇÃO.</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:flex-end">
+        <p class="metodo-intro rv d2">O processo de trabalho segue cinco etapas. Cada uma garante que a comunicação tenha base antes de ter forma. Sem pular etapas.</p>
+      </div>
+    </div>
+    <div class="metodo-steps">
+      <div class="m-step rv">
+        <div class="m-step-top"><span class="m-step-n">01</span></div>
+        <div>
+          <h3 class="m-step-h">Destravar.</h3>
+          <p class="m-step-p">O problema real antes da solução aparente. O que está bloqueando a comunicação.</p>
+        </div>
+      </div>
+      <div class="m-step rv d1">
+        <div class="m-step-top"><span class="m-step-n">02</span></div>
+        <div>
+          <h3 class="m-step-h">Clarear.</h3>
+          <p class="m-step-p">Definir o posicionamento com precisão. Quem é a marca, o que ela diz e para quem.</p>
+        </div>
+      </div>
+      <div class="m-step pivot rv d2">
+        <div class="m-step-top">
+          <span class="m-step-n">03</span>
+          <span class="m-badge">Núcleo</span>
+        </div>
+        <div>
+          <h3 class="m-step-h">Estruturar.</h3>
+          <p class="m-step-p">Construir o sistema de comunicação. A base que sustenta tudo o que vem depois.</p>
+        </div>
+      </div>
+      <div class="m-step rv d3">
+        <div class="m-step-top"><span class="m-step-n">04</span></div>
+        <div>
+          <h3 class="m-step-h">Direcionar.</h3>
+          <p class="m-step-p">Traçar o caminho estratégico. Prioridades definidas. Ações com intenção.</p>
+        </div>
+      </div>
+      <div class="m-step rv d4">
+        <div class="m-step-top"><span class="m-step-n">05</span></div>
+        <div>
+          <h3 class="m-step-h">Aplicar.</h3>
+          <p class="m-step-p">Execução que reflete o que foi estruturado. Consistência que aparece no resultado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PÚBLICO -->
+<section id="publico">
+  <div class="wrap">
+    <span class="sec-tag rv">Seção 04</span>
+    <h2 class="publico-h2 rv d1">PÚBLICO.</h2>
+    <p class="publico-lead rv d2">Marcas que precisam de clareza na comunicação. Que sabem que precisam se posicionar, mas ainda não encontraram a direção certa.</p>
+    <div class="publico-cols">
+      <div class="pub-col dark rv d1">
+        <span class="pub-label">Quem a marca atende</span>
+        <ul class="pub-list">
+          <li class="pub-item">Marcas travadas na comunicação.</li>
+          <li class="pub-item">Marcas sem posicionamento definido.</li>
+          <li class="pub-item">Marcas que querem começar com direção.</li>
+          <li class="pub-item">Marcas que precisam de consistência.</li>
+        </ul>
+      </div>
+      <div class="pub-col light rv d2">
+        <span class="pub-label">Quem a marca não atende</span>
+        <ul class="pub-list">
+          <li class="pub-item">Marcas que buscam atalhos.</li>
+          <li class="pub-item">Marcas que querem apenas execução.</li>
+          <li class="pub-item">Marcas que não estão dispostas a construir base.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOM DE VOZ -->
+<section id="tom">
+  <div class="wrap">
+    <div class="tom-top">
+      <div>
+        <span class="sec-tag sec-tag-dim rv">Seção 05</span>
+        <h2 class="tom-h2 rv d1">TOM<br>DE<br>VOZ.</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:flex-end">
+        <p class="tom-desc rv d1">A comunicação é direta, clara e estratégica.</p>
+        <p class="tom-desc rv d2">Fala com segurança, sem arrogância. Acolhe sem ser permissiva. Orienta sem ser autoritária.</p>
+      </div>
+    </div>
+    <div class="tom-cols rv">
+      <div class="tom-block t-sim">
+        <span class="tom-bl">A marca fala assim</span>
+        <ul class="tom-phrases">
+          <li class="tom-ph">"Clareza vem antes do conteúdo."</li>
+          <li class="tom-ph">"Estratégia é saber o que fazer e por quê."</li>
+          <li class="tom-ph">"Posicionamento começa antes do primeiro post."</li>
+          <li class="tom-ph">"Consistência nasce de clareza."</li>
+        </ul>
+      </div>
+      <div class="tom-block t-nao">
+        <span class="tom-bl">A marca não fala assim</span>
+        <ul class="tom-phrases">
+          <li class="tom-ph">"Siga essas dicas e viralize!"</li>
+          <li class="tom-ph">"O segredo do sucesso no Instagram."</li>
+          <li class="tom-ph">"Use esses hacks para bombar."</li>
+          <li class="tom-ph">"Copia esse template que dá certo."</li>
+        </ul>
+      </div>
+    </div>
+    <div class="regras-grid rv d2" style="margin-top:2px">
+      <div class="regra r-usar">
+        <span class="regra-label">Usar</span>
+        <ul class="regra-list">
+          <li class="regra-item">Frases curtas e diretas.</li>
+          <li class="regra-item">Afirmações no presente.</li>
+          <li class="regra-item">Verbos de ação.</li>
+          <li class="regra-item">Parágrafos enxutos.</li>
+        </ul>
+      </div>
+      <div class="regra r-evitar">
+        <span class="regra-label">Evitar</span>
+        <ul class="regra-list">
+          <li class="regra-item">Excesso de emojis.</li>
+          <li class="regra-item">Superlativos vazios.</li>
+          <li class="regra-item">Linguagem genérica.</li>
+          <li class="regra-item">Travessões desnecessários.</li>
+        </ul>
+      </div>
+      <div class="regra r-nunca">
+        <span class="regra-label">Nunca</span>
+        <ul class="regra-list">
+          <li class="regra-item">Linguagem agressiva.</li>
+          <li class="regra-item">Tom de guru.</li>
+          <li class="regra-item">Frases motivacionais genéricas.</li>
+          <li class="regra-item">Clickbait.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="wrap-sm">
+    <div class="manifesto-inner">
+      <span class="manifesto-label rv">Manifesto</span>
+      <div class="rv d1">
+        <p class="manifesto-text">Toda autenticidade envolve uma dose de coragem. Pra ser <em>diferente.</em> Pra ser mal entendido. Pra ser vulnerável.</p>
+        <span class="manifesto-attr">Yas Assis — Posicionamento com intenção</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="rv">
+      <h2 class="cta-h2">PRONTO<br>PARA<br>TER<br>DIREÇÃO?</h2>
+      <span class="cta-serif">Posicionamento estratégico começa com uma conversa direta.</span>
+    </div>
+    <div class="cta-side rv d2">
+      <form class="cta-contact" id="ctaWhatsappForm">
+        <span class="cta-contact-head">Contato rápido no WhatsApp</span>
+        <div class="cta-contact-grid">
+          <div class="cta-field">
+            <label for="ctaNome">Nome</label>
+            <input id="ctaNome" type="text" placeholder="Seu nome" required>
+          </div>
+          <div class="cta-field">
+            <label for="ctaWhatsapp">WhatsApp</label>
+            <input id="ctaWhatsapp" type="tel" placeholder="(DDD) 90000-0000" required>
+          </div>
+        </div>
+        <div class="cta-field">
+          <label for="ctaAssunto">Assunto</label>
+          <select id="ctaAssunto" required>
+            <option value="" selected disabled>Selecione</option>
+            <option value="Posicionamento">Posicionamento</option>
+            <option value="Estrategia de conteudo">Estrategia de conteudo</option>
+            <option value="Consultoria">Consultoria</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="cta-field">
+          <label for="ctaMensagem">Mensagem</label>
+          <textarea id="ctaMensagem" placeholder="Me conte em uma frase o que voce precisa" required></textarea>
+        </div>
+        <button type="submit">Enviar no WhatsApp</button>
+        <p class="cta-contact-note">Retorno em horario comercial com os proximos passos para seu atendimento.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Yas<b>.</b><br>Assis.</div>
+      <p class="footer-tagline">Destravação<br>com direção.</p>
+    </div>
+    <div>
+      <span class="footer-col-label">Navegação</span>
+      <ul class="footer-nav">
+        <li><a href="#sobre">Identidade</a></li>
+        <li><a href="#entrega">Entregas</a></li>
+        <li><a href="#metodo">Método</a></li>
+        <li><a href="#publico">Público</a></li>
+        <li><a href="#tom">Tom de Voz</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-label">Contato</span>
+      <ul class="footer-nav">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">E-mail</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-sign">
+        <p class="footer-sign-h">Pronto para começar?</p>
+        <p class="footer-sign-p">Clareza antes do conteúdo. Estratégia antes da execução.</p>
+        <a href="#cta" class="footer-sign-btn">Entrar em contato →</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Yas Assis. Todos os direitos reservados.</span>
+    <span class="footer-badge">
+    <a href="https://www.linkedin.com/in/heliojunior1218/" target="_blank" rel="noopener noreferrer">Desenvolvido por Hélio Júnior</a>
+</span>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('vi') }), {threshold:.08, rootMargin:'0px 0px -32px 0px'})
+document.querySelectorAll('.rv').forEach(el => obs.observe(el))
+
+// Nav hide on scroll down
+let last = 0
+const nav = document.getElementById('nav')
+window.addEventListener('scroll', () => {
+  const y = window.scrollY
+  nav.style.transform = (y > last && y > 80) ? 'translateY(-100%)' : ''
+  nav.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1)'
+  last = y
+  // Active links
+  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => a.style.color = '')
+  document.querySelectorAll('section[id]').forEach(sec => {
+    if(y >= sec.offsetTop - 80)
+      document.querySelectorAll(`.nav-links a[href="#${sec.id}"]`).forEach(a => a.style.color = '#E7FF3B')
+  })
+}, {passive:true})
+
+// Step hover
+document.querySelectorAll('.step-row').forEach(row => {
+  row.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.step-row').forEach(r => r.classList.remove('on'))
+    row.classList.add('on')
+  })
+})
+
+// Mobile menu
+const ham = document.querySelector('.hamburger')
+const links = document.querySelector('.nav-links')
+let open = false
+const spans = ham.querySelectorAll('span')
+ham.addEventListener('click', () => {
+  open = !open
+  if(open){
+    links.style.cssText = 'display:flex;flex-direction:column;gap:0;position:fixed;top:52px;left:0;right:0;background:#1a1a1a;padding:8px 24px;border-top:1px solid #2c2c2c;z-index:199'
+    links.querySelectorAll('a').forEach(a => { a.style.padding = '14px 0'; a.style.borderBottom = '1px solid #2a2a2a'; a.style.fontSize = '13px' })
+    spans[0].style.transform = 'rotate(45deg) translate(4.5px,4.5px)'
+    spans[1].style.opacity = '0'
+    spans[2].style.transform = 'rotate(-45deg) translate(4.5px,-4.5px)'
+  } else {
+    links.style.cssText = 'display:none'
+    spans[0].style.transform = ''; spans[1].style.opacity = ''; spans[2].style.transform = ''
+  }
+})
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  open = false; links.style.cssText = 'display:none'
+  spans[0].style.transform = ''; spans[1].style.opacity = ''; spans[2].style.transform = ''
+}))
+
+// CTA WhatsApp form
+const ctaWhatsappForm = document.getElementById('ctaWhatsappForm')
+if (ctaWhatsappForm) {
+  ctaWhatsappForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const nome = document.getElementById('ctaNome')
+    const whatsapp = document.getElementById('ctaWhatsapp')
+    const assunto = document.getElementById('ctaAssunto')
+    const mensagem = document.getElementById('ctaMensagem')
+    if (!nome || !whatsapp || !assunto || !mensagem) return
+    const nomeV = nome.value.trim()
+    const whatsV = whatsapp.value.trim()
+    const assuntoV = assunto.value.trim()
+    const msgV = mensagem.value.trim()
+    if (!nomeV || !whatsV || !assuntoV || !msgV) return
+    const msg = encodeURIComponent(
+      `Oi, Yas! Vim do seu site e quero conversar.\n\nNome: ${nomeV}\nWhatsApp: ${whatsV}\nAssunto: ${assuntoV}\nMensagem: ${msgV}`
+    )
+    window.open(`https://wa.me/?text=${msg}`, '_blank')
+  })
+}
+</script>
+</body>
+</html>
