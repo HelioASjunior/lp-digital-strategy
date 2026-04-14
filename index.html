@@ -255,6 +255,51 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
 .footer-copy{font-size:11px;color:#B5B5B5;letter-spacing:.04em}
 .footer-badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--y)}
 
+/* CURSOR */
+@media(pointer:fine){
+  *{cursor:none!important}
+  #cur-ring{
+    position:fixed;top:0;left:0;
+    width:38px;height:38px;
+    border:1.5px solid #E7FF3B;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9998;
+    will-change:transform,left,top;
+    mix-blend-mode:difference;
+    transition:
+      width .5s cubic-bezier(.16,1,.3,1),
+      height .5s cubic-bezier(.16,1,.3,1),
+      background .4s cubic-bezier(.16,1,.3,1),
+      opacity .3s;
+  }
+  #cur-dot{
+    position:fixed;top:0;left:0;
+    width:5px;height:5px;
+    background:#E7FF3B;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:9999;
+    will-change:left,top;
+    mix-blend-mode:difference;
+    transition:transform .15s cubic-bezier(.16,1,.3,1),opacity .3s;
+  }
+  body.cur-hover #cur-ring{
+    width:68px;height:68px;
+    background:rgba(231,255,59,.15);
+  }
+  body.cur-hover #cur-dot{
+    transform:translate(-50%,-50%) scale(0);
+  }
+  body.cur-click #cur-ring{
+    width:28px;height:28px;
+    background:rgba(231,255,59,.5);
+    transition-duration:.08s;
+  }
+  body.cur-hidden #cur-ring,
+  body.cur-hidden #cur-dot{opacity:0}
+}
+
 /* REVEAL */
 .rv{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .rv.vi{opacity:1;transform:none}
@@ -801,6 +846,65 @@ if (ctaWhatsappForm) {
     window.open(`https://wa.me/?text=${msg}`, '_blank')
   })
 }
+</script>
+<script>
+/* CURSOR */
+(function(){
+  if(!window.matchMedia('(pointer:fine)').matches) return;
+
+  const ring = document.createElement('div'); ring.id = 'cur-ring';
+  const dot  = document.createElement('div'); dot.id  = 'cur-dot';
+  document.body.append(ring, dot);
+
+  let mx=0, my=0, rx=0, ry=0;
+  let pvx=0, pvy=0;
+  let initiated = false;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    // dot tracks exactly
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+    if(!initiated){ rx=mx; ry=my; initiated=true; }
+  });
+
+  (function loop(){
+    // smooth lerp for ring
+    rx += (mx - rx) * 0.1;
+    ry += (my - ry) * 0.1;
+
+    // velocity for elastic stretch
+    const vx = (mx - rx) * 0.22;
+    const vy = (my - ry) * 0.22;
+    const speed = Math.sqrt(vx*vx + vy*vy);
+    const angle = Math.atan2(vy, vx);
+    const stretch = Math.min(1 + speed * 0.045, 1.55);
+    const squeeze = 1 / Math.sqrt(stretch);
+
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    ring.style.transform =
+      `translate(-50%,-50%) rotate(${angle}rad) scaleX(${stretch.toFixed(3)}) scaleY(${squeeze.toFixed(3)})`;
+    dot.style.transform = `translate(-50%,-50%)`;
+
+    requestAnimationFrame(loop);
+  })();
+
+  // hover on interactive elements
+  const sel = 'a,button,[role="button"],label,input,select,textarea';
+  document.querySelectorAll(sel).forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cur-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cur-hover'));
+  });
+
+  // click pulse
+  document.addEventListener('mousedown', () => document.body.classList.add('cur-click'));
+  document.addEventListener('mouseup',   () => document.body.classList.remove('cur-click'));
+
+  // hide when outside window
+  document.documentElement.addEventListener('mouseleave', () => document.body.classList.add('cur-hidden'));
+  document.documentElement.addEventListener('mouseenter', () => document.body.classList.remove('cur-hidden'));
+})();
 </script>
 </body>
 </html>
