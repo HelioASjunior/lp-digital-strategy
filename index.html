@@ -92,8 +92,14 @@ a{text-decoration:none;color:inherit}
 .qse-photo-slot img{display:block;width:100%;height:100%;object-fit:contain}
 .qse-content{display:flex;flex-direction:column;gap:20px}
 .qse-content .sec-tag{color:#B5B5B5}
-.qse-h2{font-size:clamp(48px,7.5vw,108px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
+.qse-h2{font-size:clamp(32px,5vw,72px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
 .qse-copy{min-height:260px;padding:16px 18px;font-size:15px;line-height:1.65;color:#D6D0C2;background:transparent}
+.qse-copy p{margin-bottom:1.5rem;line-height:1.7;color:#E5E5E5;font-size:1.1rem;text-align:justify}
+.qse-copy strong{color:#E7FF3B;font-weight:600}
+.qse-content{animation:fadeInUp 1s ease-out}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.qse-photo-slot img{border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform 0.3s ease}
+.qse-photo-slot img:hover{transform:scale(1.02)}
 
 /* MARQUEE */
 .marquee-wrap{background:var(--y);overflow:hidden;padding:13px 0}
@@ -105,7 +111,7 @@ a{text-decoration:none;color:inherit}
 /* SECTIONS */
 .wrap{max-width:var(--max);margin:0 auto;padding:clamp(80px,10vw,160px) var(--pad)}
 .wrap-sm{max-width:var(--max);margin:0 auto;padding:clamp(64px,8vw,120px) var(--pad)}
-.sec-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);display:block;margin-bottom:24px}
+.sec-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);display:inline-block;margin-bottom:1rem;padding:5px 15px;background:#f0f0f0;border-radius:20px}
 .sec-tag-dim{color:#444}
 
 /* SOBRE */
@@ -363,12 +369,12 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
 <section id="hero">
   <div class="hero-main">
     <div>
-      <span class="hero-tag">Manual de Marca — Estratégia Digital</span>
+      <span class="hero-tag">Destrave sua comunicação no digital. </span>
       <h1 class="hero-h1">YAS<br><span class="acc">ASSIS.</span></h1>
     </div>
     <div class="hero-right">
       <p class="hero-serif">"Clareza vem antes do conteúdo."</p>
-      <p>Estratégia e posicionamento digital para marcas que precisam de direção — não de mais conteúdo.</p>
+      <p>Clareza, estratégia e direção para transformar conteúdo em resultado.</p>
       <div class="hero-cta-row">
         <a href="#metodo" class="btn-y">Ver o método</a>
         <a href="#sobre" class="btn-ghost">Sobre a marca</a>
@@ -422,12 +428,22 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
   <div class="wrap">
     <div class="qse-grid">
       <div class="qse-photo-slot">
-        <img src="assets/ya.png" alt="Foto Yas Assis" loading="lazy">
+        <img src="assets/ya.png" alt="Foto Yas Assis" loading="lazy" class="reveal-image">
       </div>
       <div class="qse-content">
         <span class="sec-tag"></span>
-        <h2 class="qse-h2">Quem sou eu</h2>
-        <p class="qse-copy">QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - QUEM SOU EU - </p>
+        <h2 class="qse-h2">Afinal, quem sou eu?</h2>
+        <div class="qse-copy">
+          <p>Meu nome é <strong>Yasmin Assis</strong>, nasci em 2007 e hoje moro em Goiânia, onde sou graduanda de Publicidade e Propaganda na UFG. Desde muito cedo, sempre fui uma pessoa que gostava de criar, se expressar e transformar o que sentia em algo que outras pessoas também pudessem sentir.</p>
+          
+          <p>Isso começou de um jeito simples: gravava e editava vídeos para aniversário de amigas, conteúdos sem muita pretensão. Mas tinha uma coisa ali: eu gostava da ideia de provocar alguma sensação em quem assistia. Seja alegria, emoção, reflexão… qualquer tipo de impacto.</p>
+          
+          <p>Com o tempo, acompanhando de perto o universo das palestras, comecei a entender que <strong>comunicação é muito além do que apenas falar</strong>. É sobre direção. Sobre intenção. Sobre a forma como uma mensagem realmente marca alguém.</p>
+          
+          <p>Aos 16 anos, comecei a atuar com mídias sociais dentro da igreja. Durante 2 anos, participei da criação de conteúdo e planejamento. Foi ali que tudo começou a fazer sentido. Não era só sobre postar. Era sobre fazer a mensagem chegar do jeito certo.</p>
+          
+          <p>Hoje, eu ajudo marcas que precisam se posicionar através do <strong>Método Destravação</strong>, um processo para tirar negócios da paralisia e transformar comunicação em algo estratégico, consistente e aplicável.</p>
+        </div>
       </div>
     </div>
   </div>
