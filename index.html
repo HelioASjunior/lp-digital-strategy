@@ -6,404 +6,1106 @@
 <title>Yas Assis — Estratégia e Posicionamento Digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --k:#1F1F1F;
-  --w:#F8F7F5;
-  --b:#F5F1EA;
-  --g:#6D6D6D;
-  --y:#E7FF3B;
-  --a:#5A709C;
-  --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --pad:clamp(24px,5.5vw,88px);
-  --max:1320px;
+/* ══════════════════════════════════════════════
+   TOKENS  —  paleta original preservada
+══════════════════════════════════════════════ */
+:root {
+  --k: #1F1F1F;           /* preto quase */
+  --w: #F8F7F5;           /* branco quente */
+  --b: #F5F1EA;           /* bege */
+  --g: #6D6D6D;           /* cinza */
+  --y: #E7FF3B;           /* amarelo-lima original */
+  --a: #5A709C;           /* azul-ardósia original */
+
+  /* Derivações da paleta para o estilo clubinhu */
+  --slate:    #4D6490;    /* azul-ardósia principal (hero bg) */
+  --slate-d:  #3A5078;    /* mais escuro */
+  --slate-l:  #6A87B5;    /* mais claro */
+  --dark:     #13131A;    /* fundo dark sections */
+  --dark-card:#1D2235;    /* card escuro */
+  --lime:     #E7FF3B;    /* verde-lima = --y original */
+  --lime-d:   #C8E000;    /* lima mais escuro */
+  --cream:    #F2F0E8;    /* bege claro para cards claros */
+
+  --sans: 'Plus Jakarta Sans', 'Helvetica Neue', Helvetica, sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --radius: 20px;
+  --radius-lg: 28px;
+  --pad: clamp(24px, 5vw, 80px);
+  --max: 1280px;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--w);color:var(--k);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
 
-/* NAV */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  height:52px;padding:0 var(--pad);
-  background:var(--k);border-bottom:1px solid #2c2c2c;
-  transition:transform .35s cubic-bezier(.16,1,.3,1);
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--dark);
+  color: var(--w);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-.nav-logo{font-weight:900;font-size:17px;letter-spacing:-.03em;text-transform:uppercase;color:var(--w)}
-.nav-logo b{color:var(--y)}
-.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#D7D7D7;transition:color .2s}
-.nav-links a:hover{color:var(--y)}
-.nav-btn{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);background:var(--y);padding:9px 22px;transition:opacity .2s;white-space:nowrap}
-.nav-btn:hover{opacity:.85}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--w);transition:all .3s}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
 
-/* HERO */
-#hero{background:var(--k);min-height:100vh;display:grid;grid-template-rows:1fr auto;padding-top:52px;overflow:hidden}
-.hero-main{
-  display:grid;grid-template-columns:1fr 1fr;align-items:center;
-  padding:clamp(40px,5vw,80px) var(--pad) clamp(40px,5vw,80px);
-  gap:40px;max-width:var(--max);margin:0 auto;width:100%;
-}
-.hero-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--y);margin-bottom:28px;display:block;opacity:0;animation:fu .6s .1s cubic-bezier(.16,1,.3,1) forwards}
-.hero-h1{font-weight:900;font-size:clamp(80px,13vw,200px);letter-spacing:-.045em;line-height:.85;text-transform:uppercase;color:var(--w);opacity:0;animation:fu .8s .2s cubic-bezier(.16,1,.3,1) forwards}
-.hero-h1 .acc{color:var(--y)}
-.hero-right{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:8px;opacity:0;animation:fu .7s .4s cubic-bezier(.16,1,.3,1) forwards}
-.hero-serif{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,28px);color:#D4CFC2;line-height:1.35;margin-bottom:36px}
-.hero-right p{font-size:13px;line-height:1.65;color:#C4BFB2;max-width:320px;margin-bottom:32px}
-.hero-cta-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.btn-y{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);background:var(--y);padding:13px 28px;transition:opacity .2s;display:inline-block}
-.btn-y:hover{opacity:.85}
-.btn-ghost{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#D2D2D2;border-bottom:1px solid #7A7A7A;padding-bottom:2px;transition:color .2s,border-color .2s}
-.btn-ghost:hover{color:var(--w);border-color:var(--w)}
-.floating-actions{position:fixed;right:var(--pad);bottom:var(--pad);z-index:260;display:flex;flex-direction:column;gap:12px}
-.floating-action{display:flex;align-items:center;gap:10px;min-width:180px;padding:14px 18px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;box-shadow:0 18px 40px rgba(0,0,0,.2);transition:transform .2s,opacity .2s}
-.floating-action:hover{transform:translateY(-2px)}
-.floating-action .icon{width:24px;height:24px;display:block;flex:0 0 24px}
-.floating-action .icon svg{width:100%;height:100%;display:block;fill:currentColor}
-.floating-action.whatsapp{background:var(--y);color:var(--k)}
-.floating-action.whatsapp .icon{color:var(--k)}
-.floating-action.instagram{background:var(--k);color:var(--w);border:1px solid #3a3a3a}
-.floating-action.instagram .icon{color:var(--y)}
-.hero-bar{
-  border-top:1px solid #2c2c2c;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px var(--pad);max-width:var(--max);margin:0 auto;width:100%;
-  opacity:0;animation:fu .6s .6s cubic-bezier(.16,1,.3,1) forwards;
-}
-.hero-bar-left{display:flex;align-items:center;gap:32px}
-.hero-bar-stat{display:flex;flex-direction:column;gap:4px}
-.hero-bar-num{font-size:clamp(20px,2.5vw,32px);font-weight:900;letter-spacing:-.03em;color:var(--w)}
-.hero-bar-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#444}
-.hero-bar-div{width:1px;height:32px;background:#2c2c2c}
-.hero-scroll{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#444;display:flex;align-items:center;gap:10px;transition:color .2s}
-.hero-scroll:hover{color:var(--y)}
-.hero-scroll::before{content:'';display:block;width:28px;height:1px;background:currentColor}
-
-/* QUEM SOU EU */
-#quem-sou-eu{background:var(--k)}
-.qse-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:stretch}
-.qse-photo-slot{min-height:420px;overflow:hidden;background:transparent}
-.qse-photo-slot img{display:block;width:100%;height:100%;object-fit:contain}
-.qse-content{display:flex;flex-direction:column;gap:20px}
-.qse-content .sec-tag{color:#B5B5B5}
-.qse-h2{font-size:clamp(32px,5vw,72px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
-.qse-copy{min-height:260px;padding:16px 18px;font-size:15px;line-height:1.65;color:#D6D0C2;background:transparent}
-.qse-copy p{margin-bottom:1.5rem;line-height:1.7;color:#E5E5E5;font-size:1.1rem;text-align:justify}
-.qse-copy strong{color:#E7FF3B;font-weight:600}
-.qse-content{animation:fadeInUp 1s ease-out}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.qse-photo-slot img{border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);transition:transform 0.3s ease}
-.qse-photo-slot img:hover{transform:scale(1.02)}
-
-/* MARQUEE */
-.marquee-wrap{background:var(--y);overflow:hidden;padding:13px 0}
-.marquee-track{display:flex;white-space:nowrap;animation:mq 22s linear infinite;width:max-content}
-.marquee-item{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--k);padding:0 28px;display:flex;align-items:center;gap:28px}
-.marquee-item::after{content:'·';opacity:.4}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* SECTIONS */
-.wrap{max-width:var(--max);margin:0 auto;padding:clamp(80px,10vw,160px) var(--pad)}
-.wrap-sm{max-width:var(--max);margin:0 auto;padding:clamp(64px,8vw,120px) var(--pad)}
-.sec-tag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);display:inline-block;margin-bottom:1rem;padding:5px 15px;background:#f0f0f0;border-radius:20px}
-.sec-tag-dim{color:#444}
-
-/* SOBRE */
-#sobre{background:var(--w)}
-.sobre-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,96px);align-items:start}
-.sobre-h2{font-size:clamp(52px,7.5vw,108px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--k)}
-.sobre-h2 mark{background:var(--k);color:var(--y);padding:0 6px;font-style:normal}
-.div-y{width:40px;height:2px;background:var(--y);margin:32px 0}
-.sobre-quote{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,30px);line-height:1.3;color:var(--k);margin-bottom:28px}
-.sobre-body{font-size:clamp(14px,1.4vw,17px);line-height:1.7;color:var(--g);margin-bottom:16px}
-.steps-list{margin-top:40px;border-top:1px solid #e0ddd6}
-.step-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid #e0ddd6;cursor:default;transition:padding-left .2s}
-.step-row:hover{padding-left:8px}
-.step-row:hover .step-name{color:var(--k)}
-.step-name{font-size:clamp(14px,1.6vw,19px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;color:#bbb;transition:color .2s}
-.step-row.on .step-name{color:var(--k)}
-.step-num{font-family:var(--serif);font-size:13px;font-style:italic;color:#ccc}
-.step-row.on .step-num{color:var(--y)}
-
-/* ENTREGA */
-#entrega{background:var(--k)}
-.entrega-top{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:end;margin-bottom:clamp(48px,6vw,80px)}
-.entrega-h2{font-size:clamp(48px,7.5vw,108px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
-.entrega-desc{font-size:clamp(13px,1.4vw,16px);line-height:1.7;color:#B4B4B4;padding-bottom:4px}
-.entrega-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.e-card{background:#252525;padding:clamp(32px,4vw,52px) clamp(24px,3vw,40px);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;transition:background .25s}
-.e-card:hover{background:#2e2e2e}
-.e-card.hl{background:var(--y)}
-.e-card-n{font-family:var(--serif);font-size:13px;font-style:italic;color:#444}
-.e-card.hl .e-card-n{color:#888}
-.e-card-h{font-size:clamp(32px,4vw,56px);font-weight:900;letter-spacing:-.03em;line-height:.92;text-transform:uppercase;color:var(--w);margin:auto 0 0}
-.e-card.hl .e-card-h{color:var(--k)}
-.e-card-p{font-size:13px;line-height:1.6;color:#B8B8B8;margin-top:20px}
-.e-card.hl .e-card-p{color:#555}
-
-/* MÉTODO */
-#metodo{background:var(--b)}
-#metodo .wrap{max-width:1480px;padding-left:clamp(16px,3vw,40px);padding-right:clamp(16px,3vw,40px)}
-.metodo-top{display:grid;grid-template-columns:6fr 6fr;gap:40px;align-items:end;margin-bottom:clamp(56px,7vw,96px)}
-.metodo-h2{font-size:clamp(52px,8vw,120px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--k)}
-.metodo-intro{font-size:clamp(14px,1.5vw,18px);line-height:1.65;color:var(--g)}
-.metodo-steps{display:grid;grid-template-columns:repeat(5,minmax(250px,1fr));gap:10px;max-width:1460px;margin:0 auto;justify-content:center}
-.m-step{background:var(--w);padding:clamp(28px,3.5vw,48px) clamp(20px,2.5vw,32px);min-height:380px;display:flex;flex-direction:column;justify-content:space-between;border-top:2px solid transparent;transition:border-color .25s,background .25s}
-.m-step:hover{border-top-color:var(--y)}
-.m-step.pivot{background:var(--k);border-top-color:var(--y)}
-.m-step-top{display:flex;justify-content:space-between;align-items:flex-start}
-.m-step-n{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--k)}
-.m-step.pivot .m-step-n{color:var(--y)}
-.m-badge{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--y);color:var(--k);padding:4px 8px}
-.m-step-h{font-size:clamp(22px,2.15vw,34px);font-weight:900;letter-spacing:-.02em;line-height:.98;text-transform:uppercase;color:var(--k);margin:32px 0 16px;overflow-wrap:anywhere;word-break:break-word}
-.m-step.pivot .m-step-h{color:var(--w)}
-.m-step-p{font-size:13px;line-height:1.6;color:var(--g);margin-top:auto}
-.m-step.pivot .m-step-p{color:#666}
-
-/* PÚBLICO */
-#publico{background:var(--w)}
-.publico-h2{font-size:clamp(64px,10vw,150px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--k);margin:20px 0 clamp(24px,3vw,40px)}
-.publico-lead{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,28px);color:var(--g);line-height:1.4;max-width:680px;margin-bottom:clamp(48px,6vw,80px)}
-.publico-cols{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.pub-col{padding:clamp(36px,4.5vw,60px)}
-.pub-col.dark{background:var(--k)}
-.pub-col.light{background:var(--b);border:1px solid #e0ddd6}
-.pub-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:32px;display:block}
-.pub-col.dark .pub-label{color:var(--y)}
-.pub-col.light .pub-label{color:var(--g)}
-.pub-list{list-style:none}
-.pub-item{font-size:clamp(15px,1.7vw,20px);font-weight:700;letter-spacing:-.01em;line-height:1.2;padding:16px 0;border-bottom:1px solid}
-.pub-col.dark .pub-item{color:var(--w);border-color:#2c2c2c}
-.pub-col.light .pub-item{color:var(--k);border-color:#e0ddd6}
-.pub-item:last-child{border-bottom:none;padding-bottom:0}
-
-/* TOM */
-#tom{background:var(--k)}
-.tom-top{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,80px);align-items:start;margin-bottom:clamp(56px,7vw,96px)}
-.tom-h2{font-size:clamp(52px,8vw,120px);font-weight:900;letter-spacing:-.04em;line-height:.88;text-transform:uppercase;color:var(--w)}
-.tom-desc{font-size:clamp(14px,1.5vw,18px);line-height:1.65;color:#B4B4B4;margin-bottom:16px}
-.tom-cols{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
-.tom-block{padding:clamp(32px,4vw,48px)}
-.tom-block.t-sim{background:#222}
-.tom-block.t-nao{background:#1a1a1a;border:1px solid #252525}
-.tom-bl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px;display:block}
-.tom-block.t-sim .tom-bl{color:var(--y)}
-.tom-block.t-nao .tom-bl{color:#444}
-.tom-phrases{list-style:none}
-.tom-ph{font-family:var(--serif);font-size:clamp(16px,1.9vw,22px);font-style:italic;line-height:1.35;padding:14px 0;border-bottom:1px solid}
-.tom-block.t-sim .tom-ph{color:var(--w);border-color:#2c2c2c}
-.tom-block.t-nao .tom-ph{color:#444;border-color:#222;text-decoration:line-through;text-decoration-color:#333}
-.tom-ph:last-child{border-bottom:none;padding-bottom:0}
-.regras-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.regra{padding:clamp(24px,3vw,36px);background:#1a1a1a}
-.regra-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;display:block}
-.r-usar .regra-label{color:var(--y)}
-.r-evitar .regra-label{color:#555}
-.r-nunca .regra-label{color:#7a3535}
-.regra-list{list-style:none}
-.regra-item{font-size:13px;line-height:1.45;color:#B0B0B0;padding:10px 0;border-bottom:1px solid #242424}
-.regra-item:last-child{border-bottom:none;padding-bottom:0}
-
-/* MANIFESTO */
-#manifesto{background:var(--b)}
-.manifesto-inner{display:grid;grid-template-columns:48px 1fr;gap:40px;align-items:center}
-.manifesto-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--g);writing-mode:vertical-rl;transform:rotate(180deg);align-self:flex-start;margin-top:4px}
-.manifesto-text{font-family:var(--serif);font-size:clamp(28px,4.5vw,64px);font-style:italic;font-weight:500;line-height:1.2;color:var(--k)}
-.manifesto-text em{font-style:normal;font-weight:600;background:var(--k);color:var(--y);padding:2px 8px}
-.manifesto-attr{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g);margin-top:36px;display:block}
-
-/* CTA */
-#cta{background:var(--y);overflow:hidden}
-.cta-inner{display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:center;padding:clamp(80px,12vw,180px) var(--pad);max-width:1400px;margin:0 auto}
-.cta-h2{font-size:clamp(64px,11vw,160px);font-weight:900;letter-spacing:-.045em;line-height:.85;text-transform:uppercase;color:var(--k)}
-.cta-serif{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,26px);color:#666;margin-top:24px;display:block}
-.cta-side{display:flex;flex-direction:column;gap:16px;align-items:stretch}
-.btn-k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--w);background:var(--k);padding:15px 28px;transition:opacity .2s;display:inline-block;text-align:center}
-.btn-k:hover{opacity:.8}
-.btn-ok{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);border:1.5px solid var(--k);padding:14px 28px;transition:background .2s,color .2s;display:inline-block;text-align:center}
-.btn-ok:hover{background:var(--k);color:var(--y)}
-.cta-contact{display:flex;flex-direction:column;gap:12px;max-width:560px;width:100%;background:#F2FB7A;border:1.5px solid #1f1f1f;padding:18px}
-.cta-contact-head{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1f1f1f}
-.cta-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.cta-field{display:flex;flex-direction:column;gap:6px}
-.cta-field label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#313131}
-.cta-contact input,.cta-contact select,.cta-contact textarea{width:100%;min-width:0;border:1.5px solid #1f1f1f;background:#FBFFD0;padding:10px 12px;font-size:14px;color:var(--k);outline:none;font-family:var(--sans)}
-.cta-contact input,.cta-contact select{height:44px}
-.cta-contact textarea{min-height:92px;resize:vertical}
-.cta-contact input::placeholder{color:#4A4A4A}
-.cta-contact select:focus,.cta-contact textarea:focus,.cta-contact input:focus{box-shadow:0 0 0 2px rgba(31,31,31,.15)}
-.cta-contact button{height:46px;border:none;background:var(--k);color:var(--w);padding:0 16px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
-.cta-contact button:hover{opacity:.88}
-.cta-contact-note{font-size:12px;line-height:1.4;color:#3C3C3C}
-
-/* FOOTER */
-footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4vw,48px)}
-.footer-top{display:grid;grid-template-columns:4fr 2fr 2fr 4fr;gap:40px;max-width:var(--max);margin:0 auto;padding-bottom:clamp(40px,5vw,64px);border-bottom:1px solid #2c2c2c}
-.footer-logo{font-size:26px;font-weight:900;letter-spacing:-.03em;text-transform:uppercase;color:var(--w);line-height:1;margin-bottom:16px}
-.footer-logo b{color:var(--y)}
-.footer-tagline{font-family:var(--serif);font-style:italic;font-size:16px;color:#D1C9BA;line-height:1.4}
-.footer-col-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#B8B8B8;margin-bottom:20px;display:block}
-.footer-nav{list-style:none;display:flex;flex-direction:column;gap:12px}
-.footer-nav a{font-size:13px;font-weight:700;letter-spacing:-.01em;text-transform:uppercase;color:#E3E3E3;transition:color .2s}
-.footer-nav a:hover{color:var(--w)}
-.footer-sign{background:#161616;padding:24px;display:flex;flex-direction:column;gap:12px}
-.footer-sign-h{font-size:14px;font-weight:900;letter-spacing:-.01em;text-transform:uppercase;color:var(--w)}
-.footer-sign-p{font-size:12px;line-height:1.5;color:#555}
-.footer-sign-btn{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--k);background:var(--y);padding:10px 16px;text-align:center;display:block;margin-top:4px;transition:opacity .2s}
-.footer-sign-btn:hover{opacity:.85}
-.footer-bottom{max-width:var(--max);margin:24px auto 0;display:flex;align-items:center;justify-content:space-between}
-.footer-copy{font-size:11px;color:#B5B5B5;letter-spacing:.04em}
-.footer-badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--y)}
-
-/* CURSOR */
-@media(pointer:fine){
-  *{cursor:none!important}
-  #cur-ring{
-    position:fixed;top:0;left:0;
-    width:38px;height:38px;
-    border:1.5px solid #E7FF3B;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:9998;
-    will-change:transform,left,top;
-    mix-blend-mode:difference;
-    transition:
-      width .5s cubic-bezier(.16,1,.3,1),
-      height .5s cubic-bezier(.16,1,.3,1),
-      background .4s cubic-bezier(.16,1,.3,1),
-      opacity .3s;
+/* ══════════════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════════════ */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+  #cur {
+    position: fixed; z-index: 9999;
+    width: 12px; height: 12px;
+    background: var(--lime);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%,-50%);
+    transition: width .25s, height .25s, background .25s;
+    mix-blend-mode: difference;
   }
-  #cur-dot{
-    position:fixed;top:0;left:0;
-    width:5px;height:5px;
-    background:#E7FF3B;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:9999;
-    will-change:left,top;
-    mix-blend-mode:difference;
-    transition:transform .15s cubic-bezier(.16,1,.3,1),opacity .3s;
+  #cur-ring {
+    position: fixed; z-index: 9998;
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(231,255,59,.5);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%,-50%);
+    transition: width .4s cubic-bezier(.16,1,.3,1), height .4s cubic-bezier(.16,1,.3,1);
+    mix-blend-mode: difference;
   }
-  body.cur-hover #cur-ring{
-    width:68px;height:68px;
-    background:rgba(231,255,59,.15);
-  }
-  body.cur-hover #cur-dot{
-    transform:translate(-50%,-50%) scale(0);
-  }
-  body.cur-click #cur-ring{
-    width:28px;height:28px;
-    background:rgba(231,255,59,.5);
-    transition-duration:.08s;
-  }
-  body.cur-hidden #cur-ring,
-  body.cur-hidden #cur-dot{opacity:0}
+  body.cur-hover #cur { width: 6px; height: 6px; }
+  body.cur-hover #cur-ring { width: 60px; height: 60px; }
 }
 
-/* REVEAL */
-.rv{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.rv.vi{opacity:1;transform:none}
-.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
-@keyframes fu{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
-
-/* RESPONSIVE */
-@media(max-width:960px){
-  .hero-main{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .qse-grid{grid-template-columns:1fr}
-  .qse-photo-slot{min-height:320px}
-  .sobre-grid{grid-template-columns:1fr}
-  .entrega-top{grid-template-columns:1fr}
-  .entrega-cards{grid-template-columns:1fr 1fr}
-  .metodo-top{grid-template-columns:1fr}
-  .metodo-steps{grid-template-columns:repeat(2,minmax(240px,1fr));max-width:980px}
-  .publico-cols{grid-template-columns:1fr}
-  .tom-top{grid-template-columns:1fr}
-  .tom-cols{grid-template-columns:1fr}
-  .regras-grid{grid-template-columns:1fr}
-  .cta-inner{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr 1fr}
-  .footer-top > div:first-child,.footer-top > div:last-child{grid-column:1/-1}
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .manifesto-inner{grid-template-columns:auto 1fr;gap:20px}
+/* ══════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--pad);
+  background: rgba(77,100,144,.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  transition: transform .35s cubic-bezier(.16,1,.3,1), background .3s;
 }
-@media(max-width:580px){
-  .entrega-cards{grid-template-columns:1fr}
-  .metodo-steps{grid-template-columns:minmax(0,1fr);max-width:420px}
-  .cta-contact-grid{grid-template-columns:1fr}
-  .floating-actions{right:16px;bottom:16px}
-  .floating-action{min-width:0;padding:12px 14px}
-  .floating-action span:last-child{display:none}
-  .footer-top{grid-template-columns:1fr}
-  .footer-top > div{grid-column:auto}
-  .hero-bar{flex-direction:column;align-items:flex-start;gap:16px}
+#nav.scrolled { background: rgba(19,19,26,.88); }
+.nav-logo {
+  font-size: 20px; font-weight: 800; color: var(--w); letter-spacing: -.02em;
+}
+.nav-logo .dot { color: var(--lime); }
+.nav-links { display: flex; list-style: none; gap: 28px; }
+.nav-links a {
+  font-size: 13px; font-weight: 600; color: rgba(248,247,245,.55);
+  transition: color .2s; letter-spacing: -.01em;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--w); }
+.nav-btn {
+  background: var(--lime); color: var(--dark);
+  font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 100px;
+  transition: transform .2s, box-shadow .2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(231,255,59,.35); }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--w); border-radius: 2px; transition: all .3s; }
+
+/* ══════════════════════════════════════════════
+   HERO  —  fundo azul-ardósia, foto + card sobrepostos
+══════════════════════════════════════════════ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--slate);
+  /* Gradiente suave como no clubinhu */
+  background: radial-gradient(ellipse 80% 100% at 70% 50%, #5f8faa 0%, var(--slate) 55%, var(--slate-d) 100%);
+  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 68px;
+}
+
+/* Textura de fundo sutil — padrão "Y" repetido */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='55' font-family='Arial' font-size='52' font-weight='900' fill='rgba(255,255,255,0.03)'%3EY%3C/text%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: var(--max); margin: 0 auto; width: 100%;
+  padding: clamp(40px,6vh,80px) var(--pad);
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: clamp(40px,5vw,80px);
+  position: relative; z-index: 2;
+}
+
+/* Coluna esquerda — texto */
+.hero-text { display: flex; flex-direction: column; gap: 24px; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lime);
+}
+.hero-eyebrow::before {
+  content: ''; width: 28px; height: 2px; background: var(--lime); display: block; border-radius: 2px;
+}
+
+.hero-h1 {
+  font-size: clamp(36px, 5.5vw, 70px);
+  font-weight: 800; line-height: 1.1; letter-spacing: -.03em;
+  color: var(--w);
+}
+.hero-h1 .accent { color: var(--lime); }
+.hero-h1 .serif-it {
+  font-family: var(--serif); font-style: italic; font-weight: 600;
+  color: var(--w);
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.4vw, 18px); line-height: 1.7;
+  color: rgba(248,247,245,.65); max-width: 400px;
+}
+
+.hero-btns { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.btn-lime {
+  background: var(--lime); color: var(--dark);
+  font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+  padding: 14px 28px; border-radius: 100px;
+  display: inline-flex; align-items: center; gap: 10px;
+  transition: transform .2s, box-shadow .2s;
+}
+.btn-lime:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(231,255,59,.4); }
+.btn-lime .arrow {
+  width: 28px; height: 28px; background: var(--dark); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+.btn-ghost-w {
+  font-size: 13px; font-weight: 600; color: rgba(248,247,245,.7);
+  border-bottom: 1px solid rgba(248,247,245,.3); padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.btn-ghost-w:hover { color: var(--w); border-color: var(--w); }
+
+/* Stats chips */
+.hero-stats {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.stat-chip {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 100px;
+  padding: 8px 16px;
+  display: flex; align-items: center; gap: 8px;
+  backdrop-filter: blur(8px);
+}
+.stat-num {
+  font-size: 18px; font-weight: 800; color: var(--lime); letter-spacing: -.02em;
+}
+.stat-label { font-size: 11px; color: rgba(248,247,245,.55); font-weight: 500; }
+
+/* Coluna direita — foto com card sobrepostoPR */
+.hero-visual {
+  position: relative;
+  display: flex; justify-content: center; align-items: flex-end;
+}
+
+/* Foto do hero */
+.hero-visual > img {
+  width: min(100%, 420px);
+  height: auto; object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+}
+/* Placeholder quando não há imagem */
+.hero-visual .photo-placeholder {
+  width: min(100%, 420px);
+  min-height: 420px;
+  background: rgba(255,255,255,.08);
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; opacity: .2;
+}
+
+/* Badge flutuante superior esquerdo */
+.hero-badge-tl {
+  position: absolute; top: -16px; left: -16px;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--lime); color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 900;
+  box-shadow: 0 8px 24px rgba(231,255,59,.4);
+  animation: float 3s ease-in-out infinite;
+}
+/* Card flutuante inferior direito — quote */
+.hero-card-br {
+  position: absolute; bottom: -20px; right: -20px;
+  background: rgba(255,255,255,.95);
+  border-radius: 16px;
+  padding: 16px 20px;
+  max-width: 220px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.2);
+  color: var(--dark);
+}
+.hero-card-br .card-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--slate); margin-bottom: 6px;
+}
+.hero-card-br .card-text {
+  font-size: 13px; font-weight: 700; line-height: 1.4; color: var(--dark);
+}
+.hero-card-br .card-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--lime);
+  display: inline-block; margin-right: 6px;
+  box-shadow: 0 0 0 3px rgba(231,255,59,.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 3px rgba(231,255,59,.3); }
+  50% { box-shadow: 0 0 0 7px rgba(231,255,59,.1); }
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+@keyframes slideUp { to{transform:translateY(0)} }
+
+/* ══════════════════════════════════════════════
+   MARQUEE  —  inclinado como referência
+══════════════════════════════════════════════ */
+.marquee-section {
+  background: var(--lime);
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative; z-index: 10;
+}
+.marquee-track {
+  display: flex; white-space: nowrap;
+  animation: mq 24s linear infinite; width: max-content;
+}
+.marquee-item {
+  font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--dark); padding: 0 32px;
+  display: flex; align-items: center; gap: 32px;
+}
+.marquee-item::after { content: '◆'; font-size: 7px; opacity: .35; }
+@keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ══════════════════════════════════════════════
+   SEÇÃO "QUEM SOU EU"  —  foto card + texto
+══════════════════════════════════════════════ */
+#quem-sou-eu {
+  background: var(--slate);
+  position: relative; overflow: hidden;
+}
+#quem-sou-eu::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='55' font-family='Arial' font-size='52' font-weight='900' fill='rgba(255,255,255,0.025)'%3EY%3C/text%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.qse-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(80px,10vw,140px) var(--pad);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(40px,6vw,100px); align-items: center;
+  position: relative; z-index: 1;
+}
+.qse-photo-wrap {
+  position: relative; display: flex; justify-content: center;
+}
+.qse-photo-card {
+  background: rgba(255,255,255,.12);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 100%; max-width: 460px;
+  aspect-ratio: 4/5;
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 24px 60px rgba(0,0,0,.2);
+}
+.qse-photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.qse-photo-card .photo-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #5A7BAD 0%, #3A5078 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 60px; opacity: .2;
+}
+/* Badge arroba flutuante */
+.qse-badge {
+  position: absolute; top: -12px; left: calc(50% - 190px + 8px);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--lime); color: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 900;
+  box-shadow: 0 8px 24px rgba(231,255,59,.4);
+  animation: float 3.5s ease-in-out infinite;
+}
+.qse-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 16px; display: block;
+}
+.qse-h2 {
+  font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; line-height: 1.15;
+  letter-spacing: -.03em; color: var(--w); margin-bottom: 20px;
+}
+.qse-h2 .accent { color: var(--lime); }
+.qse-p {
+  font-size: clamp(14px, 1.3vw, 17px); line-height: 1.8;
+  color: rgba(248,247,245,.65); margin-bottom: 16px;
+}
+.qse-p .hl { color: var(--lime); font-weight: 700; }
+.qse-cta { margin-top: 12px; }
+
+/* ══════════════════════════════════════════════
+   SEÇÃO IDENTIDADE  —  fundo bege, editorial
+══════════════════════════════════════════════ */
+#sobre {
+  background: var(--w);
+  color: var(--dark);
+}
+.sobre-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(80px,10vw,140px) var(--pad);
+}
+.sobre-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: start; margin-bottom: 64px;
+}
+.sobre-h2 {
+  font-size: clamp(40px, 6vw, 80px); font-weight: 800; line-height: 1.05;
+  letter-spacing: -.04em; color: var(--dark);
+}
+.sobre-h2 .hl {
+  background: var(--dark); color: var(--lime);
+  padding: 0 8px; display: inline; border-radius: 4px;
+}
+.sobre-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; color: var(--dark);
+  border-left: 3px solid var(--lime); padding-left: 20px;
+  margin-bottom: 20px;
+}
+.sobre-body { font-size: clamp(14px,1.2vw,16px); line-height: 1.8; color: var(--g); margin-bottom: 14px; }
+
+/* Steps list estilo Clubinhu */
+.steps-list {
+  margin-top: 48px;
+  display: flex; flex-direction: column; gap: 0;
+  border-top: 1px solid rgba(26,26,24,.08);
+}
+.step-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 18px 12px; border-bottom: 1px solid rgba(26,26,24,.07);
+  border-radius: 12px; cursor: default;
+  transition: background .25s, padding-left .25s;
+}
+.step-row:hover, .step-row.on { background: rgba(77,100,144,.07); padding-left: 20px; }
+.step-num-badge {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(77,100,144,.1); border: 1.5px solid rgba(77,100,144,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--slate); flex-shrink: 0;
+  transition: background .25s, border-color .25s;
+}
+.step-row.on .step-num-badge, .step-row:hover .step-num-badge {
+  background: var(--lime); border-color: var(--lime); color: var(--dark);
+}
+.step-name {
+  font-size: 16px; font-weight: 700; color: rgba(26,26,24,.3);
+  letter-spacing: -.01em; transition: color .25s;
+}
+.step-row.on .step-name, .step-row:hover .step-name { color: var(--dark); }
+
+/* ══════════════════════════════════════════════
+   SEÇÃO ENTREGAS  —  fundo lime, cards alternados
+══════════════════════════════════════════════ */
+#entrega {
+  background: var(--lime);
+  position: relative; overflow: hidden;
+}
+/* Animated Y watermarks */
+.entrega-y-wrap {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+}
+.entrega-y {
+  position: absolute;
+  font-family: var(--sans); font-weight: 900; line-height: 1;
+  color: rgba(26,26,24,1); user-select: none;
+  opacity: 0.07;
+  animation: yFloat var(--dur, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes yFloat {
+  0%,100% { transform: translateY(0px) rotate(-4deg); opacity: 0.08; }
+  50%     { transform: translateY(-40px) rotate(4deg); opacity: 0.20; }
+}
+.entrega-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(80px,10vw,140px) var(--pad);
+  position: relative; z-index: 1;
+}
+.section-title {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 52px); font-weight: 800;
+  line-height: 1.15; letter-spacing: -.03em;
+  color: var(--dark); margin-bottom: 56px;
+}
+.entrega-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+/* Cards alternados dark / cream — exatamente como clubinhu */
+.e-card {
+  border-radius: var(--radius); padding: clamp(24px,3vw,36px);
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
+}
+.e-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.18); }
+.e-card.dark {
+  background: var(--dark-card); color: var(--w);
+}
+.e-card.light {
+  background: var(--cream); color: var(--dark);
+}
+.e-card-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--lime); display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.e-card.light .e-card-icon { background: rgba(77,100,144,.15); }
+.e-card-title {
+  font-size: clamp(17px,1.8vw,22px); font-weight: 800; line-height: 1.25; letter-spacing: -.02em;
+}
+.e-card.dark .e-card-title { color: var(--w); }
+.e-card.light .e-card-title { color: var(--dark); }
+.e-card-desc {
+  font-size: 14px; line-height: 1.65;
+}
+.e-card.dark .e-card-desc { color: rgba(248,247,245,.55); }
+.e-card.light .e-card-desc { color: var(--g); }
+
+/* ══════════════════════════════════════════════
+   SEÇÃO MÉTODO  —  fundo bege, 5 etapas em coluna
+══════════════════════════════════════════════ */
+#metodo {
+  background: var(--b);
+  color: var(--dark);
+}
+.metodo-inner {
+  max-width: 1540px; margin: 0 auto;
+  padding: clamp(80px,10vw,140px) var(--pad);
+}
+.metodo-header {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 14px;
+  text-align: center;
+  margin-bottom: 64px;
+}
+.metodo-h2 {
+  font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+  line-height: 1.05; letter-spacing: -.04em; color: var(--dark);
+}
+.metodo-intro {
+  font-size: clamp(14px,1.3vw,17px); line-height: 1.8; color: var(--g);
+  max-width: 680px;
+}
+.metodo-steps {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px;
+}
+.m-card {
+  background: var(--w); border-radius: var(--radius);
+  padding: clamp(20px,2.5vw,32px); min-height: 300px;
+  display: flex; flex-direction: column; justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  border: 1.5px solid transparent;
+  transition: border-color .3s, transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s;
+}
+.m-card:hover { border-color: var(--slate); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(77,100,144,.15); }
+.m-card:focus-within { border-color: var(--slate); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(77,100,144,.15); }
+.m-card.pivot { background: var(--dark); border-color: var(--lime); }
+.m-card.pivot:hover { box-shadow: 0 16px 40px rgba(231,255,59,.2); }
+.m-card.pivot:focus-within { box-shadow: 0 16px 40px rgba(231,255,59,.2); }
+.m-card-top { width: 100%; display: flex; justify-content: center; align-items: flex-start; gap: 10px; }
+.m-num {
+  font-size: 12px; font-weight: 700; letter-spacing: .06em;
+  color: rgba(26,26,24,.3);
+}
+.m-card.pivot .m-num { color: rgba(248,247,245,.35); }
+.m-badge {
+  font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  background: var(--lime); color: var(--dark); padding: 4px 10px; border-radius: 100px;
+}
+.m-h {
+  font-size: clamp(20px,2vw,28px); font-weight: 800; line-height: 1.1;
+  letter-spacing: -.02em; color: var(--dark); margin: 20px 0 10px;
+}
+.m-card.pivot .m-h { color: var(--w); }
+.m-p { font-size: 13px; line-height: 1.65; color: var(--g); }
+.m-card.pivot .m-p { color: rgba(248,247,245,.45); }
+.m-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+}
+
+/* Tooltip dos cards do metodo */
+.m-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  transform: translate(-50%, 10px);
+  width: min(300px, calc(100vw - 48px));
+  background: rgba(19,19,26,.96);
+  color: var(--w);
+  border: 1px solid rgba(231,255,59,.25);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 20px 42px rgba(0,0,0,.35);
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: .01em;
+  text-align: justify;
+  text-justify: inter-word;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+  z-index: 12;
+}
+.m-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: rgba(19,19,26,.96);
+  border-right: 1px solid rgba(231,255,59,.25);
+  border-bottom: 1px solid rgba(231,255,59,.25);
+  rotate: 45deg;
+}
+.m-card:hover .m-tooltip,
+.m-card:focus-within .m-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 1024px) {
+  .m-tooltip {
+    left: 16px;
+    right: 16px;
+    bottom: calc(100% + 10px);
+    width: auto;
+    transform: translate(0, 10px);
+  }
+  .m-tooltip::after {
+    left: 28px;
+    transform: none;
+  }
+  .m-card:hover .m-tooltip,
+  .m-card:focus-within .m-tooltip {
+    transform: translate(0, 0);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SEÇÃO PÚBLICO  —  fundo branco, split dark/cream
+══════════════════════════════════════════════ */
+#publico { background: var(--w); color: var(--dark); }
+.publico-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(80px,10vw,140px) var(--pad);
+}
+.publico-top { margin-bottom: 56px; }
+.publico-h2 {
+  font-size: clamp(40px, 7vw, 100px); font-weight: 800; line-height: 1;
+  letter-spacing: -.04em; color: var(--dark); margin: 12px 0 20px;
+}
+.publico-lead {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px, 2vw, 26px); color: var(--g);
+  line-height: 1.45; max-width: 580px;
+}
+.publico-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pub-col {
+  border-radius: var(--radius); padding: clamp(28px,4vw,48px);
+  transition: transform .3s;
+}
+.pub-col:hover { transform: translateY(-4px); }
+.pub-col.dark { background: var(--dark); }
+.pub-col.light { background: var(--b); border: 1.5px solid rgba(26,26,24,.08); }
+.pub-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  margin-bottom: 28px; display: block;
+}
+.pub-col.dark .pub-label { color: var(--lime); }
+.pub-col.light .pub-label { color: var(--g); }
+.pub-list { list-style: none; }
+.pub-item {
+  font-size: clamp(15px, 1.5vw, 19px); font-weight: 600; line-height: 1.3;
+  padding: 16px 0; border-bottom: 1px solid;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.pub-col.dark .pub-item { color: var(--w); border-color: rgba(248,247,245,.07); }
+.pub-col.light .pub-item { color: var(--dark); border-color: rgba(26,26,24,.07); }
+.pub-item:last-child { border-bottom: none; padding-bottom: 0; }
+.pub-item::before {
+  content: '→'; font-size: 12px; margin-top: 3px; flex-shrink: 0;
+}
+.pub-col.dark .pub-item::before { color: var(--lime); }
+.pub-col.light .pub-item::before { color: var(--slate); }
+
+/* ══════════════════════════════════════════════
+   SEÇÃO FAQ  —  fundo dark
+══════════════════════════════════════════════ */
+#tom { background: var(--dark); }
+.tom-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(80px,10vw,140px) var(--pad);
+}
+.tom-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  align-items: end; margin-bottom: 44px;
+}
+.tom-h2 {
+  font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+  line-height: 1.05; letter-spacing: -.04em; color: var(--w);
+}
+.tom-desc { font-size: clamp(14px,1.3vw,17px); line-height: 1.8; color: rgba(248,247,245,.48); margin-bottom: 10px; }
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+.faq-item {
+  border-radius: var(--radius);
+  border: 1.5px solid rgba(248,247,245,.08);
+  background: rgba(255,255,255,.02);
+  overflow: hidden;
+  transition: border-color .25s, background .25s, transform .25s cubic-bezier(.16,1,.3,1);
+}
+.faq-item:hover {
+  border-color: rgba(231,255,59,.45);
+  transform: translateY(-2px);
+}
+.faq-item[open] {
+  border-color: rgba(231,255,59,.65);
+  background: rgba(255,255,255,.04);
+}
+.faq-q {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q-text {
+  font-size: clamp(16px,1.6vw,21px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  color: var(--w);
+}
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  color: transparent;
+  font-size: 0;
+}
+.faq-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1.8px solid rgba(248,247,245,.62);
+  border-bottom: 1.8px solid rgba(248,247,245,.62);
+  transform: translate(-50%, -60%) rotate(45deg);
+  transition: transform .22s ease, border-color .22s ease;
+}
+.faq-item:hover .faq-icon::before { border-color: var(--lime); }
+.faq-item[open] .faq-icon::before {
+  border-color: var(--lime);
+  transform: translate(-50%, -40%) rotate(-135deg);
+}
+.faq-a {
+  padding: 0 24px 22px;
+  font-size: clamp(14px,1.25vw,17px);
+  line-height: 1.75;
+  color: rgba(248,247,245,.65);
+  max-width: 980px;
+}
+.faq-a strong {
+  color: var(--lime);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* ══════════════════════════════════════════════
+   MANIFESTO  —  fundo bege, quote gigante
+══════════════════════════════════════════════ */
+#manifesto {
+  background: var(--b); color: var(--dark); position: relative; overflow: hidden;
+}
+#manifesto::before {
+  content: '"';
+  position: absolute; top: -0.25em; left: -0.05em;
+  font-size: clamp(280px, 35vw, 550px); font-weight: 900;
+  color: rgba(26,26,24,.04); line-height: 1;
+  font-family: var(--serif); pointer-events: none;
+}
+.manifesto-inner {
+  max-width: 900px; margin: 0 auto;
+  padding: clamp(80px,12vw,160px) var(--pad);
+  text-align: center; position: relative; z-index: 1;
+}
+.manifesto-text {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(28px, 5vw, 68px); line-height: 1.2;
+  color: var(--dark); margin-bottom: 36px;
+}
+.manifesto-text em {
+  font-style: normal; font-weight: 700;
+  background: var(--dark); color: var(--lime);
+  padding: 2px 12px; border-radius: 6px;
+}
+.manifesto-attr {
+  font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(26,26,24,.35); display: block;
+}
+
+/* ══════════════════════════════════════════════
+   CTA  —  fundo lime, bold
+══════════════════════════════════════════════ */
+#cta { background: var(--lime); position: relative; overflow: hidden; }
+#cta::before {
+  content: 'Y'; position: absolute; right: -0.05em; bottom: -0.2em;
+  font-size: clamp(200px, 28vw, 420px); font-weight: 900;
+  color: rgba(26,26,24,.06); line-height: 1; pointer-events: none;
+}
+.cta-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(80px,12vw,160px) var(--pad);
+  display: grid; grid-template-columns: 7fr 5fr; gap: 48px;
+  align-items: center; position: relative; z-index: 1;
+}
+.cta-h2 {
+  font-size: clamp(48px, 9vw, 130px); font-weight: 800;
+  line-height: .9; letter-spacing: -.05em; color: var(--dark);
+}
+.cta-sub {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(18px, 2vw, 26px); color: rgba(26,26,24,.5);
+  margin-top: 20px; display: block; line-height: 1.45;
+}
+.cta-form {
+  background: rgba(26,26,24,.07); border: 1.5px solid rgba(26,26,24,.15);
+  border-radius: var(--radius); padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.cta-form-title {
+  font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(26,26,24,.55); padding-bottom: 16px;
+  border-bottom: 1px solid rgba(26,26,24,.1); margin-bottom: 2px;
+}
+.cta-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.cta-field { display: flex; flex-direction: column; gap: 6px; }
+.cta-field label {
+  font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(26,26,24,.45);
+}
+.cta-field input, .cta-field select, .cta-field textarea {
+  background: rgba(248,247,245,.6); border: 1.5px solid rgba(26,26,24,.18);
+  border-radius: 10px; padding: 11px 14px;
+  font-family: var(--sans); font-size: 14px; color: var(--dark);
+  width: 100%; outline: none; transition: border-color .2s, background .2s;
+}
+.cta-field input:focus, .cta-field select:focus, .cta-field textarea:focus {
+  border-color: rgba(26,26,24,.5); background: rgba(248,247,245,.9);
+}
+.cta-field input, .cta-field select { height: 46px; }
+.cta-field textarea { min-height: 88px; resize: vertical; }
+.cta-field input::placeholder { color: rgba(26,26,24,.3); }
+.cta-submit {
+  height: 50px; background: var(--dark); color: var(--w);
+  border: none; border-radius: 100px;
+  font-family: var(--sans); font-size: 12px; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: opacity .2s, transform .2s;
+}
+.cta-submit:hover { opacity: .88; transform: translateY(-1px); }
+.cta-note { font-size: 12px; line-height: 1.5; color: rgba(26,26,24,.35); }
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+footer {
+  background: var(--dark); padding: clamp(56px,7vw,96px) var(--pad) clamp(28px,3.5vw,48px);
+  position: relative;
+}
+footer::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(231,255,59,.3), transparent);
+}
+.footer-top {
+  display: grid; grid-template-columns: 4fr 2fr 2fr 4fr; gap: 40px;
+  max-width: var(--max); margin: 0 auto;
+  padding-bottom: clamp(40px,5vw,64px); border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.footer-wordmark {
+  font-size: 28px; font-weight: 800; color: var(--w); letter-spacing: -.02em; margin-bottom: 12px;
+}
+.footer-wordmark .dot { color: var(--lime); }
+.footer-tagline { font-family: var(--serif); font-style: italic; font-size: 15px; color: rgba(248,247,245,.3); line-height: 1.5; }
+.footer-col-label { font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(248,247,245,.2); margin-bottom: 20px; display: block; }
+.footer-nav { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-nav a { font-size: 13px; font-weight: 600; color: rgba(248,247,245,.4); transition: color .2s, padding-left .2s; display: block; }
+.footer-nav a:hover { color: var(--w); padding-left: 4px; }
+.footer-sign {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 12px;
+}
+.footer-sign-h { font-size: 14px; font-weight: 800; color: var(--w); }
+.footer-sign-p { font-size: 13px; line-height: 1.55; color: rgba(248,247,245,.25); }
+.footer-sign-btn {
+  background: var(--lime); color: var(--dark);
+  font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+  padding: 12px 20px; border-radius: 100px; text-align: center; display: block; margin-top: 4px;
+  transition: transform .2s, box-shadow .2s;
+}
+.footer-sign-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(231,255,59,.3); }
+.footer-bottom {
+  max-width: var(--max); margin: 24px auto 0;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-copy { font-size: 11px; color: rgba(248,247,245,.2); }
+.footer-badge { font-size: 11px; font-weight: 700; color: var(--lime); opacity: .45; transition: opacity .2s; }
+.footer-badge:hover { opacity: 1; }
+
+/* ══════════════════════════════════════════════
+   FLOATING BUTTONS
+══════════════════════════════════════════════ */
+.floating-actions {
+  position: fixed; right: clamp(16px,3vw,32px); bottom: clamp(16px,3vw,32px);
+  z-index: 260; display: flex; flex-direction: column; gap: 10px;
+}
+.floating-action {
+  display: flex; align-items: center; gap: 10px;
+  min-width: 150px; padding: 12px 18px; border-radius: 100px;
+  font-family: var(--sans); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  transition: transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s;
+}
+.floating-action:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+.floating-action .icon { width: 20px; height: 20px; flex: 0 0 20px; }
+.floating-action .icon svg { width: 100%; height: 100%; fill: currentColor; display: block; }
+.floating-action.whatsapp { background: var(--lime); color: var(--dark); }
+.floating-action.instagram { background: var(--dark); color: var(--w); border: 1px solid rgba(255,255,255,.12); }
+.floating-action.instagram .icon { color: var(--lime); }
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════ */
+.rv { opacity: 0; transform: translateY(36px); transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1); }
+.rv.vi { opacity: 1; transform: none; }
+.d1{transition-delay:.07s} .d2{transition-delay:.15s} .d3{transition-delay:.24s} .d4{transition-delay:.33s} .d5{transition-delay:.42s}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  :root { --pad: clamp(20px, 4.5vw, 36px); }
+  #nav { padding: 0 20px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    order: -1;
+    margin-top: 8px;
+  }
+  .hero-visual > img { width: min(100%, 380px); }
+  .hero-inner { padding-top: 24px; gap: 32px; }
+  .hero-text { max-width: 700px; margin: 0 auto; }
+  .qse-inner { grid-template-columns: 1fr; }
+  .qse-photo-card { max-width: 420px; }
+  .sobre-header { grid-template-columns: 1fr; }
+  .metodo-header { grid-template-columns: 1fr; }
+  .metodo-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .m-card { min-height: 260px; }
+  .publico-cols { grid-template-columns: 1fr; }
+  .tom-header { grid-template-columns: 1fr; }
+  .tom-header { margin-bottom: 28px; }
+  .faq-q { padding: 18px 20px; }
+  .faq-a { padding: 0 20px 18px; }
+  .tom-cols { grid-template-columns: 1fr; }
+  .regras-grid { grid-template-columns: 1fr; }
+  .cta-inner { grid-template-columns: 1fr; }
+  .cta-inner { gap: 28px; }
+  .cta-h2 { font-size: clamp(44px, 10vw, 88px); }
+  .cta-sub { margin-top: 12px; }
+  .cta-form { padding: 22px; }
+  .entrega-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-top > div:first-child, .footer-top > div:last-child { grid-column: 1/-1; }
+  .floating-actions { right: 16px; bottom: 16px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 640px) {
+  #nav { height: 62px; }
+  .nav-btn { display: none; }
+  .hero-visual {
+    display: flex;
+    order: -1;
+    margin: 6px auto 0;
+  }
+  .hero-visual > img { width: min(88vw, 340px); }
+  .hero-inner { padding: 28px 18px 56px; gap: 24px; }
+  .hero-text { gap: 18px; }
+  .hero-h1 { font-size: clamp(32px, 11vw, 44px); }
+  .hero-sub { max-width: none; font-size: 15px; }
+  .hero-btns { width: 100%; }
+  .btn-lime { width: 100%; justify-content: center; }
+  .btn-ghost-w { display: none; }
+  .hero-stats .stat-chip { width: 100%; justify-content: center; }
+  .entrega-grid { grid-template-columns: 1fr; }
+  .section-title { margin-bottom: 32px; }
+  .metodo-steps { grid-template-columns: 1fr; gap: 10px; }
+  .m-card { min-height: auto; padding: 20px 16px; }
+  .regras-grid { grid-template-columns: 1fr; }
+  .cta-grid2 { grid-template-columns: 1fr; }
+  .qse-photo-card { max-width: 320px; }
+  .qse-h2 { font-size: clamp(28px, 9vw, 38px); margin-bottom: 16px; }
+  .qse-p { font-size: 15px; line-height: 1.7; }
+  .tom-h2 { font-size: clamp(34px, 12vw, 48px); }
+  .faq-q { padding: 16px; }
+  .faq-q-text { font-size: 16px; line-height: 1.4; }
+  .faq-a { padding: 0 16px 16px; font-size: 14px; line-height: 1.65; }
+  .sobre-inner, .entrega-inner, .metodo-inner, .publico-inner, .tom-inner, .cta-inner, .qse-inner {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .cta-h2 { font-size: clamp(40px, 17vw, 64px); line-height: .88; }
+  .cta-sub { font-size: 18px; margin-top: 14px; }
+  .cta-form { padding: 18px; }
+  .cta-submit {
+    font-size: 11px;
+    letter-spacing: .04em;
+    white-space: normal;
+    text-align: center;
+    min-height: 50px;
+    height: auto;
+    padding: 12px 14px;
+  }
+  footer { padding: 48px 18px 28px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-top { gap: 22px; padding-bottom: 24px; }
+  .footer-top > div { grid-column: auto; }
+  .footer-col-label { margin-bottom: 10px; }
+  .footer-nav a { padding: 4px 0; }
+  .footer-sign { padding: 20px; }
+  .footer-sign-btn { width: 100%; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .floating-action span:last-child { display: none; }
+  .floating-action { min-width: 0; }
+  .hero-stats { flex-direction: column; gap: 10px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ══ NAV ══ -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Yas<b>.</b></a>
+  <a href="#" class="nav-logo">YAS<span class="dot">.</span></a>
   <ul class="nav-links">
     <li><a href="#sobre">Identidade</a></li>
     <li><a href="#entrega">Entregas</a></li>
     <li><a href="#metodo">Método</a></li>
     <li><a href="#publico">Público</a></li>
-    <li><a href="#tom">Tom de Voz</a></li>
+    <li><a href="#tom">FAQ</a></li>
   </ul>
-  <a href="#cta" class="nav-btn">Começar</a>
-  <button class="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="#cta" class="nav-btn">Começar ↗</a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <section id="hero">
-  <div class="hero-main">
-    <div>
-      <span class="hero-tag">Destrave sua comunicação no digital. </span>
-      <h1 class="hero-h1">YAS<br><span class="acc">ASSIS.</span></h1>
-    </div>
-    <div class="hero-right">
-      <p class="hero-serif">"Clareza vem antes do conteúdo."</p>
-      <p>Clareza, estratégia e direção para transformar conteúdo em resultado.</p>
-      <div class="hero-cta-row">
-        <a href="#metodo" class="btn-y">Ver o método</a>
-        <a href="#sobre" class="btn-ghost">Sobre a marca</a>
+  <div class="hero-inner">
+    <!-- Texto esquerda -->
+    <div class="hero-text">
+      <span class="hero-eyebrow" style="animation:fadeUp .6s .1s both">YAS Assis</span>
+      <h1 class="hero-h1" style="animation:fadeUp .7s .2s both">
+        <span class="serif-it">Clareza</span><br>
+        antes do<br>
+        <span class="accent">conteúdo.</span>
+      </h1>
+      <p class="hero-sub" style="animation:fadeUp .7s .35s both">
+        Estratégia e posicionamento digital para marcas que precisam de direção, não de mais conteúdo.
+      </p>
+      <div class="hero-btns" style="animation:fadeUp .7s .48s both">
+        <a href="#metodo" class="btn-lime">
+          Ver Produtos
+          <span class="arrow">↗</span>
+        </a>
+        <a href="#sobre" class="btn-ghost-w">Sobre o método</a>
+      </div>
+      <div class="hero-stats" style="animation:fadeUp .6s .62s both">
+        <div class="stat-chip">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Etapas do método</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Entregas centrais</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-num accent" style="color:var(--lime)">01</span>
+          <span class="stat-label">Propósito</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="hero-bar">
-    <div class="hero-bar-left">
-      <div class="hero-bar-stat">
-        <span class="hero-bar-num">5</span>
-        <span class="hero-bar-label">Etapas do método</span>
-      </div>
-      <div class="hero-bar-div"></div>
-      <div class="hero-bar-stat">
-        <span class="hero-bar-num">3</span>
-        <span class="hero-bar-label">Entregas centrais</span>
-      </div>
-      <div class="hero-bar-div"></div>
-      <div class="hero-bar-stat">
-        <span class="hero-bar-num" style="color:var(--y)">01</span>
-        <span class="hero-bar-label">Sistema visual</span>
-      </div>
+    <!-- Foto direita -->
+    <div class="hero-visual" style="animation:fadeUp .8s .3s both">
+      <img src="assets/yaya.png?v=original" alt="Yas Assis" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="photo-placeholder" style="display:none">✦</div>
     </div>
-    <a href="#sobre" class="hero-scroll">Explorar</a>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-section">
   <div class="marquee-track">
     <span class="marquee-item">Estratégia</span>
     <span class="marquee-item">Posicionamento</span>
@@ -424,191 +1126,197 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
   </div>
 </div>
 
+<!-- ══ QUEM SOU EU ══ -->
 <section id="quem-sou-eu">
-  <div class="wrap">
-    <div class="qse-grid">
-      <div class="qse-photo-slot">
-        <img src="assets/ya.png" alt="Foto Yas Assis" loading="lazy" class="reveal-image">
+  <div class="qse-inner">
+    <div class="qse-photo-wrap rv">
+      <div class="qse-badge">@</div>
+      <div class="qse-photo-card">
+        <img src="assets/yasmin-marca.png" alt="Yas Assis" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="photo-placeholder" style="display:none">✦</div>
       </div>
-      <div class="qse-content">
-        <span class="sec-tag"></span>
-        <h2 class="qse-h2">Afinal, quem sou eu?</h2>
-        <div class="qse-copy">
-          <p>Meu nome é <strong>Yasmin Assis</strong>, nasci em 2007 e hoje moro em Goiânia, onde sou graduanda de Publicidade e Propaganda na UFG. Desde muito cedo, sempre fui uma pessoa que gostava de criar, se expressar e transformar o que sentia em algo que outras pessoas também pudessem sentir.</p>
-          
-          <p>Isso começou de um jeito simples: gravava e editava vídeos para aniversário de amigas, conteúdos sem muita pretensão. Mas tinha uma coisa ali: eu gostava da ideia de provocar alguma sensação em quem assistia. Seja alegria, emoção, reflexão… qualquer tipo de impacto.</p>
-          
-          <p>Com o tempo, acompanhando de perto o universo das palestras, comecei a entender que <strong>comunicação é muito além do que apenas falar</strong>. É sobre direção. Sobre intenção. Sobre a forma como uma mensagem realmente marca alguém.</p>
-          
-          <p>Aos 16 anos, comecei a atuar com mídias sociais dentro da igreja. Durante 2 anos, participei da criação de conteúdo e planejamento. Foi ali que tudo começou a fazer sentido. Não era só sobre postar. Era sobre fazer a mensagem chegar do jeito certo.</p>
-          
-          <p>Hoje, eu ajudo marcas que precisam se posicionar através do <strong>Método Destravação</strong>, um processo para tirar negócios da paralisia e transformar comunicação em algo estratégico, consistente e aplicável.</p>
-        </div>
-      </div>
+    </div>
+    <div class="qse-text rv d1">
+      <span class="qse-eyebrow">Afinal, quem é a Yas ?</span>
+      <h2 class="qse-h2">Comunicação com <span class="accent">clareza, direção e execução.</span></h2>
+      <p class="qse-p">Meu nome é Yasmin Assis. Nasci em 2007 e hoje moro em Goiânia, onde curso Publicidade e Propaganda na UFG.</p>
+      <p class="qse-p">Desde cedo, tive proximidade com comunicação e criação. O que começou de forma simples, com vídeos publicados em diferentes plataformas durante a infância, evoluiu para experiências mais estruturadas ao longo do tempo.</p>
+      <p class="qse-p">Aos 16 anos, iniciei minha atuação com mídias sociais na igreja. Durante 2 anos, participei diretamente da criação de conteúdo, planejamento e cobertura de eventos. Depois vieram os primeiros clientes, a experiência em agência e a continuidade dos estudos na área.</p>
+      <p class="qse-p">Foi nesse processo que entendi que comunicação não é apenas sobre postar, mas sobre ter <span class="hl">clareza</span>, <span class="hl">organização</span> e <span class="hl">direção</span>.</p>
+      <p class="qse-p">Hoje, ajudo marcas que sabem que precisam se posicionar, mas ainda não encontraram o caminho. Meu trabalho é estruturar a comunicação, trazer clareza e transformar isso em estratégia aplicável.</p>
+      <p class="qse-p">Esse é o princípio do Método Destravação: <span class="hl">clareza</span>, <span class="hl">direção</span> e <span class="hl">execução</span>.</p>
+      
     </div>
   </div>
 </section>
 
-<div class="floating-actions" aria-label="Ações rápidas">
-  <a class="floating-action whatsapp" href="https://wa.me/?text=Ol%C3%A1%2C%20quero%20conversar%20sobre%20estrat%C3%A9gia%20e%20posicionamento." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-        <path d="M20.5 3.5A11.9 11.9 0 0 0 12.04 0C5.4 0 .02 5.37.02 12a11.9 11.9 0 0 0 1.62 6L0 24l6.23-1.6a11.95 11.95 0 0 0 5.8 1.47h.01C18.65 23.87 24 18.48 24 11.85c0-3.2-1.25-6.2-3.5-8.35ZM12.04 21.78h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.7.95.98-3.6-.23-.37A9.87 9.87 0 0 1 2.1 12C2.1 6.52 6.56 2.06 12.05 2.06a9.84 9.84 0 0 1 6.97 2.89 9.8 9.8 0 0 1 2.9 6.9c0 5.47-4.46 9.93-9.88 9.93Zm5.76-7.87c-.31-.16-1.86-.92-2.15-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.25-.19.21-.37.24-.68.08-.31-.16-1.29-.48-2.45-1.52-.91-.81-1.52-1.8-1.7-2.11-.18-.31-.02-.48.14-.63.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.98-2.35-.26-.63-.53-.55-.71-.56l-.6-.01c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.64s1.13 3.07 1.29 3.29c.16.21 2.24 3.42 5.42 4.79.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.86-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.6-.37Z"/>
-      </svg>
-    </span>
+<!-- ══ FLOATING BUTTONS ══ -->
+<div class="floating-actions">
+  <a class="floating-action whatsapp" href="#cta" aria-label="WhatsApp">
+    <span class="icon"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.9 11.9 0 0 0 12.04 0C5.4 0 .02 5.37.02 12a11.9 11.9 0 0 0 1.62 6L0 24l6.23-1.6a11.95 11.95 0 0 0 5.8 1.47h.01C18.65 23.87 24 18.48 24 11.85c0-3.2-1.25-6.2-3.5-8.35ZM12.04 21.78h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.7.95.98-3.6-.23-.37A9.87 9.87 0 0 1 2.1 12C2.1 6.52 6.56 2.06 12.05 2.06a9.84 9.84 0 0 1 6.97 2.89 9.8 9.8 0 0 1 2.9 6.9c0 5.47-4.46 9.93-9.88 9.93Zm5.76-7.87c-.31-.16-1.86-.92-2.15-1.03-.29-.1-.5-.16-.71.16-.21.31-.82 1.03-1 1.25-.19.21-.37.24-.68.08-.31-.16-1.29-.48-2.45-1.52-.91-.81-1.52-1.8-1.7-2.11-.18-.31-.02-.48.14-.63.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.98-2.35-.26-.63-.53-.55-.71-.56l-.6-.01c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.64s1.13 3.07 1.29 3.29c.16.21 2.24 3.42 5.42 4.79.76.33 1.35.53 1.81.68.76.24 1.45.21 2 .13.61-.09 1.86-.76 2.13-1.5.26-.74.26-1.37.18-1.5-.08-.13-.29-.21-.6-.37Z"/></svg></span>
     <span>WhatsApp</span>
   </a>
-  <a class="floating-action instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram">
-    <span class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-        <path d="M7.5 0h9A7.5 7.5 0 0 1 24 7.5v9a7.5 7.5 0 0 1-7.5 7.5h-9A7.5 7.5 0 0 1 0 16.5v-9A7.5 7.5 0 0 1 7.5 0Zm0 2A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2h-9Zm4.5 3.5A6.5 6.5 0 1 1 5.5 12 6.5 6.5 0 0 1 12 5.5Zm0 2A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm6.75-1.38a1.38 1.38 0 1 1-1.38-1.37 1.38 1.38 0 0 1 1.38 1.37Z"/>
-      </svg>
-    </span>
+  <a class="floating-action instagram" href="https://www.instagram.com/eu.yasminassis" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+    <span class="icon"><svg viewBox="0 0 24 24"><path d="M7.5 0h9A7.5 7.5 0 0 1 24 7.5v9a7.5 7.5 0 0 1-7.5 7.5h-9A7.5 7.5 0 0 1 0 16.5v-9A7.5 7.5 0 0 1 7.5 0Zm0 2A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2h-9Zm4.5 3.5A6.5 6.5 0 1 1 5.5 12 6.5 6.5 0 0 1 12 5.5Zm0 2A4.5 4.5 0 1 0 16.5 12 4.5 4.5 0 0 0 12 7.5Zm6.75-1.38a1.38 1.38 0 1 1-1.38-1.37 1.38 1.38 0 0 1 1.38 1.37Z"/></svg></span>
     <span>Instagram</span>
   </a>
 </div>
 
-<!-- SOBRE -->
+<!-- ══ IDENTIDADE / SOBRE ══ -->
 <section id="sobre">
-  <div class="wrap">
-    <div class="sobre-grid">
+  <div class="sobre-inner">
+    <div class="sobre-header">
       <div>
-        <span class="sec-tag rv"></span>
-        <h2 class="sobre-h2 rv d1">IDENTI<br>DADE<br>DA<br><mark>MARCA.</mark></h2>
+        <span class="footer-col-label rv" style="color:var(--g)">Como funciona</span>
+        <h2 class="sobre-h2 rv d1">MÉTODO<br><span class="hl">DESTRAVAÇÃO.</span></h2>
       </div>
-      <div>
-        <p class="sobre-quote rv">Yas Assis é uma marca de estratégia e posicionamento digital.</p>
-        <div class="div-y rv d1"></div>
-        <p class="sobre-body rv d1">Trabalha com marcas que precisam de clareza para se comunicar com intenção e consistência. O foco é destravar a comunicação.</p>
-        <p class="sobre-body rv d2">Ajudar marcas a entenderem quem são, o que querem dizer e como dizer. Antes de qualquer post. Antes de qualquer conteúdo.</p>
-        <div class="steps-list rv d3">
-          <div class="step-row on">
-            <span class="step-name">Destravar</span>
-            <span class="step-num">01</span>
-          </div>
-          <div class="step-row">
-            <span class="step-name">Clarear</span>
-            <span class="step-num">02</span>
-          </div>
-          <div class="step-row">
-            <span class="step-name">Estruturar</span>
-            <span class="step-num">03</span>
-          </div>
-          <div class="step-row">
-            <span class="step-name">Direcionar</span>
-            <span class="step-num">04</span>
-          </div>
-          <div class="step-row">
-            <span class="step-name">Aplicar</span>
-            <span class="step-num">05</span>
-          </div>
-        </div>
+      <div class="rv d1">
+        <p class="sobre-quote">Começar não é o difícil.</p>
+        <p class="sobre-body">Tem gente que ainda não começou, mas quer fazer isso do jeito certo.</p>
+        <p class="sobre-body">E tem gente que já começou, mas sente que falta consistência, falta clareza… e a marca simplesmente não se posiciona.</p>
+        <p class="sobre-body">No fim, o que falta não é esforço.</p>
+        <p class="sobre-body">É direção.</p>
+        <p class="sobre-body">Sem isso, o conteúdo até acontece, mas não evolui, não conecta e não constrói nada de forma consistente.</p>
+
+      </div>
+    </div>
+    <div class="steps-list rv d2">
+      <div class="step-row on">
+        <div class="step-num-badge">01</div>
+        <span class="step-name">Destravar</span>
+      </div>
+      <div class="step-row">
+        <div class="step-num-badge">02</div>
+        <span class="step-name">Clarear</span>
+      </div>
+      <div class="step-row">
+        <div class="step-num-badge">03</div>
+        <span class="step-name">Estruturar</span>
+      </div>
+      <div class="step-row">
+        <div class="step-num-badge">04</div>
+        <span class="step-name">Direcionar</span>
+      </div>
+      <div class="step-row">
+        <div class="step-num-badge">05</div>
+        <span class="step-name">Aplicar</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ENTREGA -->
+<!-- ══ ENTREGAS ══ -->
 <section id="entrega">
-  <div class="wrap">
-    <div class="entrega-top">
-      <div>
-        <span class="sec-tag sec-tag-dim rv"></span>
-        <h2 class="entrega-h2 rv d1">O QUE<br>A MARCA<br>ENTREGA.</h2>
+  <div class="entrega-y-wrap" aria-hidden="true">
+    <span class="entrega-y" style="font-size:200px;top:2%;left:3%;--dur:8s;--delay:0s">Y</span>
+    <span class="entrega-y" style="font-size:130px;top:5%;left:28%;--dur:10s;--delay:-2s">Y</span>
+    <span class="entrega-y" style="font-size:170px;top:3%;left:55%;--dur:7s;--delay:-4s">Y</span>
+    <span class="entrega-y" style="font-size:220px;top:1%;right:2%;--dur:9s;--delay:-1s">Y</span>
+    <span class="entrega-y" style="font-size:150px;top:38%;left:8%;--dur:11s;--delay:-5s">Y</span>
+    <span class="entrega-y" style="font-size:180px;top:40%;left:42%;--dur:8.5s;--delay:-3s">Y</span>
+    <span class="entrega-y" style="font-size:140px;top:42%;right:6%;--dur:9.5s;--delay:-6s">Y</span>
+    <span class="entrega-y" style="font-size:190px;bottom:2%;left:15%;--dur:10s;--delay:-2.5s">Y</span>
+    <span class="entrega-y" style="font-size:160px;bottom:3%;left:50%;--dur:7.5s;--delay:-7s">Y</span>
+    <span class="entrega-y" style="font-size:210px;bottom:1%;right:3%;--dur:12s;--delay:-4s">Y</span>
+  </div>
+  <div class="entrega-inner">
+    <h2 class="section-title rv">O que você vai encontrar<br>ao trabalhar com a Yas Assis</h2>
+    <div class="entrega-grid">
+      <div class="e-card dark rv">
+        <div class="e-card-icon">✦</div>
+        <div class="e-card-title">Clareza.</div>
+        <p class="e-card-desc">Saber exatamente o que comunicar e por quê. Sem ruído. Sem dúvida.</p>
       </div>
-      <div style="display:flex;align-items:flex-end">
-        <p class="entrega-desc rv d2">Cada entrega existe para garantir que a comunicação tenha base antes de ter forma. Sem atalhos.</p>
+      <div class="e-card light rv d1">
+        <div class="e-card-icon" style="background:rgba(77,100,144,.15)">◎</div>
+        <div class="e-card-title">Direção.</div>
+        <p class="e-card-desc">Um caminho estruturado para a comunicação. Decisão com propósito.</p>
       </div>
-    </div>
-    <div class="entrega-cards">
-      <div class="e-card hl rv">
-        <span class="e-card-n">01</span>
-        <div>
-          <h3 class="e-card-h">Clareza.</h3>
-          <p class="e-card-p">Saber exatamente o que comunicar e por quê. Sem ruído. Sem dúvida.</p>
-        </div>
+      <div class="e-card dark rv d2">
+        <div class="e-card-icon">↗</div>
+        <div class="e-card-title">Destravação.</div>
+        <p class="e-card-desc">Sair da paralisia e agir com segurança. Consistência que nasce da clareza.</p>
       </div>
-      <div class="e-card rv d1">
-        <span class="e-card-n">02</span>
-        <div>
-          <h3 class="e-card-h">Direção.</h3>
-          <p class="e-card-p">Um caminho estruturado para a comunicação. Decisão com propósito.</p>
-        </div>
+      <div class="e-card light rv d1">
+        <div class="e-card-icon" style="background:rgba(77,100,144,.15)">◈</div>
+        <div class="e-card-title">Posicionamento definido.</div>
+        <p class="e-card-desc">Quem é a marca, o que ela diz e para quem. Sem ambiguidade.</p>
       </div>
-      <div class="e-card rv d2">
-        <span class="e-card-n">03</span>
-        <div>
-          <h3 class="e-card-h">Destr-avação.</h3>
-          <p class="e-card-p">Sair da paralisia e agir com segurança. Consistência que nasce da clareza.</p>
-        </div>
+      <div class="e-card dark rv d2">
+        <div class="e-card-icon">⬡</div>
+        <div class="e-card-title">Sistema de comunicação.</div>
+        <p class="e-card-desc">A base que sustenta tudo o que vem depois. Antes de qualquer post.</p>
+      </div>
+      <div class="e-card light rv d3">
+        <div class="e-card-icon" style="background:rgba(77,100,144,.15)">◐</div>
+        <div class="e-card-title">Consistência aplicada.</div>
+        <p class="e-card-desc">Execução que reflete o que foi estruturado. Consistência real.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MÉTODO -->
+<!-- ══ MÉTODO ══ -->
 <section id="metodo">
-  <div class="wrap">
-    <div class="metodo-top">
+  <div class="metodo-inner">
+    <div class="metodo-header">
       <div>
-        <span class="sec-tag rv"></span>
-        <h2 class="metodo-h2 rv d1">MÉTODO<br>DESTR-<br>AVAÇÃO.</h2>
+        <span class="footer-col-label rv" style="color:var(--g)"></span>
+        <h2 class="metodo-h2 rv d1">Como podemos<br>utilizar o<br>método para você.</h2>
       </div>
-      <div style="display:flex;flex-direction:column;justify-content:flex-end">
-        <p class="metodo-intro rv d2">O processo de trabalho segue cinco etapas. Cada uma garante que a comunicação tenha base antes de ter forma. Sem pular etapas.</p>
-      </div>
+      <p class="metodo-intro rv d1">Serviços desenhados para destravar o seu negócio digital.</p>
     </div>
     <div class="metodo-steps">
-      <div class="m-step rv">
-        <div class="m-step-top"><span class="m-step-n">01</span></div>
-        <div>
-          <h3 class="m-step-h">Destravar.</h3>
-          <p class="m-step-p">O problema real antes da solução aparente. O que está bloqueando a comunicação.</p>
-        </div>
+      <div class="m-card rv" tabindex="0" aria-label="Dica da etapa 01: Estruturação de Perfil">
+        <div class="m-card-top"><span class="m-num">01</span></div>
+        <div class="m-card-body"><h3 class="m-h">Estruturação de Perfil</h3><p class="m-p">(Etapas: Clarear + Estruturar)</p></div>
+        <div class="m-tooltip">Organizamos a base da sua comunicação, definimos o que faz sentido você falar e ajustamos seu perfil para transmitir clareza e posicionamento.
+Ponto de partida para quem quer começar com direção.</div>
       </div>
-      <div class="m-step rv d1">
-        <div class="m-step-top"><span class="m-step-n">02</span></div>
-        <div>
-          <h3 class="m-step-h">Clarear.</h3>
-          <p class="m-step-p">Definir o posicionamento com precisão. Quem é a marca, o que ela diz e para quem.</p>
-        </div>
+      <div class="m-card rv d1" tabindex="0" aria-label="Dica da etapa 02: Clarear">
+        <div class="m-card-top"><span class="m-num">02</span></div>
+        <div class="m-card-body"><h3 class="m-h">Packs de Conteúdos</h3><p class="m-p">(Etapas: Direcionar + Aplicar)</p></div>
+        <div class="m-tooltip">Produção contínua de conteúdo com estratégia, para sair do improviso e construir presença com consistência.
+Ideal para manter frequência com intenção.</div>
       </div>
-      <div class="m-step pivot rv d2">
-        <div class="m-step-top">
-          <span class="m-step-n">03</span>
-          <span class="m-badge">Núcleo</span>
-        </div>
-        <div>
-          <h3 class="m-step-h">Estruturar.</h3>
-          <p class="m-step-p">Construir o sistema de comunicação. A base que sustenta tudo o que vem depois.</p>
-        </div>
+      <div class="m-card pivot rv d2" tabindex="0" aria-label="Dica da etapa 03: Estruturar">
+        <div class="m-card-top"><span class="m-num">03</span><span class="m-badge">MAIS VENDIDO</span></div>
+        <div class="m-card-body"><h3 class="m-h">Estratégia e Direcionamento</h3><p class="m-p">(Etapas: Método completo)</p></div>
+        <div class="m-tooltip">Aqui a gente trabalha o processo como um todo: entendimento, organização, definição e acompanhamento.
+Para quem quer crescer com mais clareza e segurança.</div>
       </div>
-      <div class="m-step rv d3">
-        <div class="m-step-top"><span class="m-step-n">04</span></div>
-        <div>
-          <h3 class="m-step-h">Direcionar.</h3>
-          <p class="m-step-p">Traçar o caminho estratégico. Prioridades definidas. Ações com intenção.</p>
-        </div>
+      <div class="m-card rv d3" tabindex="0" aria-label="Dica da etapa 04: Direcionar">
+        <div class="m-card-top"><span class="m-num">04</span></div>
+        <div class="m-card-body"><h3 class="m-h">Performance</h3><p class="m-p">(Etapas: Direcionar + Aplicar)</p></div>
+        <div class="m-tooltip">Ajustes e decisões baseadas no que está funcionando, para melhorar consistência e evolução do conteúdo.
+Para quem já começou e quer evoluir com estratégia.</div>
       </div>
-      <div class="m-step rv d4">
-        <div class="m-step-top"><span class="m-step-n">05</span></div>
-        <div>
-          <h3 class="m-step-h">Aplicar.</h3>
-          <p class="m-step-p">Execução que reflete o que foi estruturado. Consistência que aparece no resultado.</p>
-        </div>
+      <div class="m-card rv d4" tabindex="0" aria-label="Dica da etapa 05: Aplicar">
+        <div class="m-card-top"><span class="m-num">05</span></div>
+        <div class="m-card-body"><h3 class="m-h">Cobertura de Eventos</h3><p class="m-p">(Clarear + Direcionar + Aplicar)</p></div>
+        <div class="m-tooltip">Captação e produção de conteúdo mobile em tempo real para eventos, palestras e momentos importantes da sua marca. Seja storymaker ou videomaker. 
+Transforma presença em posicionamento.</div>
+      </div>
+        <div class="m-card rv d3" tabindex="0" aria-label="Dica da etapa 06: Projetos Personalizados">
+        <div class="m-card-top"><span class="m-num">06</span></div>
+        <div class="m-card-body"><h3 class="m-h">Projetos Personalizados</h3><p class="m-p">(Aplicação sob medida)</p></div>
+        <div class="m-tooltip">Se você precisa de algo específico, a gente entende seu momento e constrói um caminho alinhado com o método.
+Solução adaptada à sua necessidade.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PÚBLICO -->
+<!-- ══ PÚBLICO ══ -->
 <section id="publico">
-  <div class="wrap">
-    <span class="sec-tag rv"></span>
-    <h2 class="publico-h2 rv d1">PÚBLICO.</h2>
-    <p class="publico-lead rv d2">Marcas que precisam de clareza na comunicação. Que sabem que precisam se posicionar, mas ainda não encontraram a direção certa.</p>
+  <div class="publico-inner">
+    <div class="publico-top">
+      <span class="footer-col-label rv" style="color:var(--g)">Público-alvo</span>
+      <h2 class="publico-h2 rv d1">PÚBLICO.</h2>
+      <p class="publico-lead rv d2">Marcas que precisam de clareza na comunicação. Que sabem que precisam se posicionar, mas ainda não encontraram a direção certa.</p>
+    </div>
     <div class="publico-cols">
-      <div class="pub-col dark rv d1">
+      <div class="pub-col dark rv">
         <span class="pub-label">Quem a marca atende</span>
         <ul class="pub-list">
           <li class="pub-item">Marcas travadas na comunicação.</li>
@@ -621,7 +1329,7 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
         <span class="pub-label">Quem a marca não atende</span>
         <ul class="pub-list">
           <li class="pub-item">Marcas que buscam atalhos.</li>
-          <li class="pub-item">Marcas que querem apenas execução.</li>
+          <li class="pub-item">Marcas que querem resultados imediatos.</li>
           <li class="pub-item">Marcas que não estão dispostas a construir base.</li>
         </ul>
       </div>
@@ -629,130 +1337,111 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
   </div>
 </section>
 
-<!-- TOM DE VOZ -->
+<!-- ══ TOM DE VOZ ══ -->
 <section id="tom">
-  <div class="wrap">
-    <div class="tom-top">
+  <div class="tom-inner">
+    <div class="tom-header">
       <div>
-        <span class="sec-tag sec-tag-dim rv"></span>
-        <h2 class="tom-h2 rv d1">TOM<br>DE<br>VOZ.</h2>
+        <span class="footer-col-label rv" style="color:#3a3a3a">Dúvidas frequentes</span>
+        <h2 class="tom-h2 rv d1">FAQ.</h2>
       </div>
       <div style="display:flex;flex-direction:column;justify-content:flex-end">
-        <p class="tom-desc rv d1">A comunicação é direta, clara e estratégica.</p>
-        <p class="tom-desc rv d2">Fala com segurança, sem arrogância. Acolhe sem ser permissiva. Orienta sem ser autoritária.</p>
+        <p class="tom-desc rv d1"></p>
+        <p class="tom-desc rv d2">Clareza para você entender se este método faz sentido para o seu momento.</p>
       </div>
     </div>
-    <div class="tom-cols rv">
-      <div class="tom-block t-sim">
-        <span class="tom-bl">A marca fala assim</span>
-        <ul class="tom-phrases">
-          <li class="tom-ph">"Clareza vem antes do conteúdo."</li>
-          <li class="tom-ph">"Estratégia é saber o que fazer e por quê."</li>
-          <li class="tom-ph">"Posicionamento começa antes do primeiro post."</li>
-          <li class="tom-ph">"Consistência nasce de clareza."</li>
-        </ul>
-      </div>
-      <div class="tom-block t-nao">
-        <span class="tom-bl">A marca não fala assim</span>
-        <ul class="tom-phrases">
-          <li class="tom-ph">"Siga essas dicas e viralize!"</li>
-          <li class="tom-ph">"O segredo do sucesso no Instagram."</li>
-          <li class="tom-ph">"Use esses hacks para bombar."</li>
-          <li class="tom-ph">"Copia esse template que dá certo."</li>
-        </ul>
-      </div>
-    </div>
-    <div class="regras-grid rv d2" style="margin-top:2px">
-      <div class="regra r-usar">
-        <span class="regra-label">Usar</span>
-        <ul class="regra-list">
-          <li class="regra-item">Frases curtas e diretas.</li>
-          <li class="regra-item">Afirmações no presente.</li>
-          <li class="regra-item">Verbos de ação.</li>
-          <li class="regra-item">Parágrafos enxutos.</li>
-        </ul>
-      </div>
-      <div class="regra r-evitar">
-        <span class="regra-label">Evitar</span>
-        <ul class="regra-list">
-          <li class="regra-item">Excesso de emojis.</li>
-          <li class="regra-item">Superlativos vazios.</li>
-          <li class="regra-item">Linguagem genérica.</li>
-          <li class="regra-item">Travessões desnecessários.</li>
-        </ul>
-      </div>
-      <div class="regra r-nunca">
-        <span class="regra-label">Nunca</span>
-        <ul class="regra-list">
-          <li class="regra-item">Linguagem agressiva.</li>
-          <li class="regra-item">Tom de guru.</li>
-          <li class="regra-item">Frases motivacionais genéricas.</li>
-          <li class="regra-item">Clickbait.</li>
-        </ul>
-      </div>
+    <div class="faq-list rv d2">
+      <details class="faq-item" open>
+        <summary class="faq-q">
+          <span class="faq-q-text">Isso funciona pra quem nunca começou?</span>
+          <span class="faq-icon">+</span>
+        </summary>
+        <p class="faq-a"><strong>Resposta</strong><br>Sim. O processo começa organizando o básico e trazendo clareza pra quem ainda não sabe por onde ir.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">E pra quem já começou, mas não tem resultado?</span>
+          <span class="faq-icon">+</span>
+        </summary>
+        <p class="faq-a"><strong>Resposta</strong><br>Também. A ideia é ajustar o que já existe e dar direção pra que o conteúdo comece a fazer sentido.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Em quanto tempo eu começo a ver resultado?</span>
+          <span class="faq-icon">+</span>
+        </summary>
+        <p class="faq-a"><strong>Resposta</strong><br>Depende do seu momento e da sua consistência. O foco aqui não é resultado imediato, é construção com direção.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Eu preciso aparecer?</span>
+          <span class="faq-icon">+</span>
+        </summary>
+        <p class="faq-a"><strong>Resposta</strong><br>Na maioria dos casos, sim. Mas isso é trabalhado com estratégia, respeitando o seu momento.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-text">Isso serve pra qualquer tipo de negócio?</span>
+          <span class="faq-icon">+</span>
+        </summary>
+        <p class="faq-a"><strong>Resposta</strong><br>Serve pra quem entende que precisa se posicionar e está disposto a construir isso com consistência. Pode ser marca pessoal, como profissionais liberais, ou negócios que querem organizar melhor a própria comunicação.</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- MANIFESTO -->
+<!-- ══ MANIFESTO ══ -->
 <section id="manifesto">
-  <div class="wrap-sm">
-    <div class="manifesto-inner">
-      <span class="manifesto-label rv">Manifesto</span>
-      <div class="rv d1">
-        <p class="manifesto-text">Toda autenticidade envolve uma dose de coragem. Pra ser <em>diferente.</em> Pra ser mal entendido. Pra ser vulnerável.</p>
-        <span class="manifesto-attr">Yas Assis — Posicionamento com intenção</span>
-      </div>
-    </div>
+  <div class="manifesto-inner">
+    <p class="manifesto-text rv">Toda autenticidade envolve uma dose de coragem. Pra ser <em>diferente.</em> Pra ser mal entendido. Pra ser vulnerável.</p>
+    <span class="manifesto-attr rv d1">Yas Assis — Posicionamento com intenção</span>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ══ CTA ══ -->
 <section id="cta">
   <div class="cta-inner">
     <div class="rv">
       <h2 class="cta-h2">PRONTO<br>PARA<br>TER<br>DIREÇÃO?</h2>
-      <span class="cta-serif">Posicionamento estratégico começa com uma conversa direta.</span>
+      <span class="cta-sub">Posicionamento estratégico começa com uma conversa direta.</span>
     </div>
-    <div class="cta-side rv d2">
-      <form class="cta-contact" id="ctaWhatsappForm">
-        <span class="cta-contact-head">Contato rápido no WhatsApp</span>
-        <div class="cta-contact-grid">
-          <div class="cta-field">
-            <label for="ctaNome">Nome</label>
-            <input id="ctaNome" type="text" placeholder="Seu nome" required>
-          </div>
-          <div class="cta-field">
-            <label for="ctaWhatsapp">WhatsApp</label>
-            <input id="ctaWhatsapp" type="tel" placeholder="(DDD) 90000-0000" required>
-          </div>
+    <div class="rv d2">
+      <form class="cta-form" id="ctaWhatsappForm">
+        <span class="cta-form-title">Contato rápido no WhatsApp</span>
+        <div class="cta-grid2">
+          <div class="cta-field"><label for="ctaNome">Nome</label><input id="ctaNome" type="text" placeholder="Seu nome" required></div>
+          <div class="cta-field"><label for="ctaWhatsapp">WhatsApp</label><input id="ctaWhatsapp" type="tel" placeholder="(DDD) 99999-9999" required></div>
         </div>
         <div class="cta-field">
           <label for="ctaAssunto">Assunto</label>
           <select id="ctaAssunto" required>
             <option value="" selected disabled>Selecione</option>
-            <option value="Posicionamento">Posicionamento</option>
-            <option value="Estrategia de conteudo">Estrategia de conteudo</option>
-            <option value="Consultoria">Consultoria</option>
+            <option value="Estruturacao de Perfil">Estruturação de Perfil</option>
+            <option value="Packs de Conteudos">Packs de Conteúdos</option>
+            <option value="Estrategia e Direcionamento">Estratégia e Direcionamento</option>
+            <option value="Performance">Performance</option>
+            <option value="Cobertura de Eventos">Cobertura de Eventos</option>
+            <option value="Projetos Personalizados">Projetos Personalizados</option>
             <option value="Outro">Outro</option>
           </select>
         </div>
-        <div class="cta-field">
-          <label for="ctaMensagem">Mensagem</label>
-          <textarea id="ctaMensagem" placeholder="Me conte em uma frase o que voce precisa" required></textarea>
-        </div>
-        <button type="submit">Enviar no WhatsApp</button>
-        <p class="cta-contact-note">Retorno em horario comercial com os proximos passos para seu atendimento.</p>
+        <div class="cta-field"><label for="ctaMensagem">Mensagem</label><textarea id="ctaMensagem" placeholder="Me conte em uma frase o que você precisa" required></textarea></div>
+        <button type="submit" class="cta-submit">Enviar no WhatsApp ↗</button>
+        <p class="cta-note">Retorno em horário comercial com os próximos passos para seu atendimento.</p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-logo">Yas<b>.</b><br>Assis.</div>
+      <div class="footer-wordmark">Yas<span class="dot">.</span><br>Assis.</div>
       <p class="footer-tagline">Destravação<br>com direção.</p>
     </div>
     <div>
@@ -762,15 +1451,15 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
         <li><a href="#entrega">Entregas</a></li>
         <li><a href="#metodo">Método</a></li>
         <li><a href="#publico">Público</a></li>
-        <li><a href="#tom">Tom de Voz</a></li>
+        <li><a href="#tom">FAQ</a></li>
       </ul>
     </div>
     <div>
       <span class="footer-col-label">Contato</span>
       <ul class="footer-nav">
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#">E-mail</a></li>
+        <li><a href="https://www.instagram.com/eu.yasminassis" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/yasmin-assis-840834400/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="tel:+5564992794616" target="_blank" rel="noopener noreferrer">Telefone</a></li>
       </ul>
     </div>
     <div>
@@ -783,144 +1472,95 @@ footer{background:var(--k);padding:clamp(56px,7vw,96px) var(--pad) clamp(32px,4v
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">© 2026 Yas Assis. Todos os direitos reservados.</span>
-    <span class="footer-badge">
-    <a href="https://www.linkedin.com/in/heliojunior1218/" target="_blank" rel="noopener noreferrer">Desenvolvido por Hélio Júnior</a>
-</span>
+    <span class="footer-badge"><a href="https://www.linkedin.com/in/heliojunior1218/" target="_blank" rel="noopener noreferrer">Desenvolvido por Hélio Júnior</a></span>
   </div>
 </footer>
 
 <script>
-// Scroll reveal
-const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('vi') }), {threshold:.08, rootMargin:'0px 0px -32px 0px'})
-document.querySelectorAll('.rv').forEach(el => obs.observe(el))
-
-// Nav hide on scroll down
-let last = 0
-const nav = document.getElementById('nav')
-window.addEventListener('scroll', () => {
-  const y = window.scrollY
-  nav.style.transform = (y > last && y > 80) ? 'translateY(-100%)' : ''
-  nav.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1)'
-  last = y
-  // Active links
-  document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => a.style.color = '')
-  document.querySelectorAll('section[id]').forEach(sec => {
-    if(y >= sec.offsetTop - 80)
-      document.querySelectorAll(`.nav-links a[href="#${sec.id}"]`).forEach(a => a.style.color = '#E7FF3B')
-  })
-}, {passive:true})
-
-// Step hover
-document.querySelectorAll('.step-row').forEach(row => {
-  row.addEventListener('mouseenter', () => {
-    document.querySelectorAll('.step-row').forEach(r => r.classList.remove('on'))
-    row.classList.add('on')
-  })
-})
-
-// Mobile menu
-const ham = document.querySelector('.hamburger')
-const links = document.querySelector('.nav-links')
-let open = false
-const spans = ham.querySelectorAll('span')
-ham.addEventListener('click', () => {
-  open = !open
-  if(open){
-    links.style.cssText = 'display:flex;flex-direction:column;gap:0;position:fixed;top:52px;left:0;right:0;background:#1a1a1a;padding:8px 24px;border-top:1px solid #2c2c2c;z-index:199'
-    links.querySelectorAll('a').forEach(a => { a.style.padding = '14px 0'; a.style.borderBottom = '1px solid #2a2a2a'; a.style.fontSize = '13px' })
-    spans[0].style.transform = 'rotate(45deg) translate(4.5px,4.5px)'
-    spans[1].style.opacity = '0'
-    spans[2].style.transform = 'rotate(-45deg) translate(4.5px,-4.5px)'
-  } else {
-    links.style.cssText = 'display:none'
-    spans[0].style.transform = ''; spans[1].style.opacity = ''; spans[2].style.transform = ''
-  }
-})
-links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  open = false; links.style.cssText = 'display:none'
-  spans[0].style.transform = ''; spans[1].style.opacity = ''; spans[2].style.transform = ''
-}))
-
-// CTA WhatsApp form
-const ctaWhatsappForm = document.getElementById('ctaWhatsappForm')
-if (ctaWhatsappForm) {
-  ctaWhatsappForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const nome = document.getElementById('ctaNome')
-    const whatsapp = document.getElementById('ctaWhatsapp')
-    const assunto = document.getElementById('ctaAssunto')
-    const mensagem = document.getElementById('ctaMensagem')
-    if (!nome || !whatsapp || !assunto || !mensagem) return
-    const nomeV = nome.value.trim()
-    const whatsV = whatsapp.value.trim()
-    const assuntoV = assunto.value.trim()
-    const msgV = mensagem.value.trim()
-    if (!nomeV || !whatsV || !assuntoV || !msgV) return
-    const msg = encodeURIComponent(
-      `Oi, Yas! Vim do seu site e quero conversar.\n\nNome: ${nomeV}\nWhatsApp: ${whatsV}\nAssunto: ${assuntoV}\nMensagem: ${msgV}`
-    )
-    window.open(`https://wa.me/?text=${msg}`, '_blank')
-  })
-}
-</script>
-<script>
 /* CURSOR */
-(function(){
-  if(!window.matchMedia('(pointer:fine)').matches) return;
-
-  const ring = document.createElement('div'); ring.id = 'cur-ring';
-  const dot  = document.createElement('div'); dot.id  = 'cur-dot';
-  document.body.append(ring, dot);
-
-  let mx=0, my=0, rx=0, ry=0;
-  let pvx=0, pvy=0;
-  let initiated = false;
-
+const cur = document.getElementById('cur');
+const curRing = document.getElementById('cur-ring');
+if (cur && curRing) {
+  let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    // dot tracks exactly
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-    if(!initiated){ rx=mx; ry=my; initiated=true; }
+    mx=e.clientX; my=e.clientY;
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
   });
-
   (function loop(){
-    // smooth lerp for ring
-    rx += (mx - rx) * 0.1;
-    ry += (my - ry) * 0.1;
-
-    // velocity for elastic stretch
-    const vx = (mx - rx) * 0.22;
-    const vy = (my - ry) * 0.22;
-    const speed = Math.sqrt(vx*vx + vy*vy);
-    const angle = Math.atan2(vy, vx);
-    const stretch = Math.min(1 + speed * 0.045, 1.55);
-    const squeeze = 1 / Math.sqrt(stretch);
-
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    ring.style.transform =
-      `translate(-50%,-50%) rotate(${angle}rad) scaleX(${stretch.toFixed(3)}) scaleY(${squeeze.toFixed(3)})`;
-    dot.style.transform = `translate(-50%,-50%)`;
-
+    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+    curRing.style.left=rx+'px'; curRing.style.top=ry+'px';
     requestAnimationFrame(loop);
   })();
-
-  // hover on interactive elements
-  const sel = 'a,button,[role="button"],label,input,select,textarea';
-  document.querySelectorAll(sel).forEach(el => {
-    el.addEventListener('mouseenter', () => document.body.classList.add('cur-hover'));
-    el.addEventListener('mouseleave', () => document.body.classList.remove('cur-hover'));
+  document.querySelectorAll('a,button,input,select,textarea,label').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('cur-hover'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cur-hover'));
   });
+}
 
-  // click pulse
-  document.addEventListener('mousedown', () => document.body.classList.add('cur-click'));
-  document.addEventListener('mouseup',   () => document.body.classList.remove('cur-click'));
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vi')}), {threshold:.06, rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-  // hide when outside window
-  document.documentElement.addEventListener('mouseleave', () => document.body.classList.add('cur-hidden'));
-  document.documentElement.addEventListener('mouseenter', () => document.body.classList.remove('cur-hidden'));
-})();
+/* NAV */
+let lastY=0;
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  nav.style.transform=(y>lastY&&y>80)?'translateY(-100%)':'';
+  nav.classList.toggle('scrolled', y>40);
+  lastY=y;
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.querySelectorAll('section[id]').forEach(sec=>{
+    if(y>=sec.offsetTop-80){const l=document.querySelector(`.nav-links a[href="#${sec.id}"]`);if(l)l.classList.add('active');}
+  });
+},{passive:true});
+
+/* STEP ROWS */
+document.querySelectorAll('.step-row').forEach(row=>{
+  row.addEventListener('mouseenter',()=>{
+    document.querySelectorAll('.step-row').forEach(r=>r.classList.remove('on'));
+    row.classList.add('on');
+  });
+});
+
+/* MOBILE MENU */
+const ham=document.querySelector('.hamburger');
+const links=document.querySelector('.nav-links');
+let open=false;
+const spans=ham.querySelectorAll('span');
+ham.addEventListener('click',()=>{
+  open=!open;
+  if(open){
+    links.style.cssText='display:flex;flex-direction:column;gap:0;position:fixed;top:68px;left:0;right:0;background:rgba(19,19,26,.97);padding:8px 24px;border-top:1px solid rgba(255,255,255,.06);z-index:199;backdrop-filter:blur(16px)';
+    links.querySelectorAll('a').forEach(a=>{a.style.padding='16px 0';a.style.borderBottom='1px solid rgba(255,255,255,.05)';a.style.fontSize='15px';a.style.opacity='0.8';});
+    spans[0].style.transform='rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity='0';
+    spans[2].style.transform='rotate(-45deg) translate(5px,-5px)';
+  } else {
+    links.style.cssText='display:none';
+    spans.forEach(s=>{s.style.transform='';s.style.opacity='';});
+  }
+});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  if(window.innerWidth<=1024 && open){
+    open=false; links.style.cssText='display:none';
+    spans.forEach(s=>{s.style.transform='';s.style.opacity='';});
+  }
+}));
+
+/* FORM */
+const form=document.getElementById('ctaWhatsappForm');
+if(form){
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const n=document.getElementById('ctaNome').value.trim();
+    const w=document.getElementById('ctaWhatsapp').value.trim();
+    const a=document.getElementById('ctaAssunto').value.trim();
+    const m=document.getElementById('ctaMensagem').value.trim();
+    if(!n||!w||!a||!m)return;
+    window.open(`https://wa.me/5564992794616?text=${encodeURIComponent(`Oi, Yas! Vim do seu site.\n\nNome: ${n}\nWhatsApp: ${w}\nAssunto: ${a}\nMensagem: ${m}`)}`,'_blank');
+  });
+}
 </script>
 </body>
 </html>
