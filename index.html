@@ -527,7 +527,8 @@ img { display: block; max-width: 100%; }
   max-width: 680px;
 }
 .metodo-steps {
-  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px;
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px;
+  justify-items: center;
 }
 .m-card {
   background: var(--w); border-radius: var(--radius);
@@ -1280,32 +1281,27 @@ footer::before {
         <div class="m-tooltip">Organizamos a base da sua comunicação, definimos o que faz sentido você falar e ajustamos seu perfil para transmitir clareza e posicionamento.
 Ponto de partida para quem quer começar com direção.</div>
       </div>
-      <div class="m-card rv d1" tabindex="0" aria-label="Dica da etapa 02: Clarear">
-        <div class="m-card-top"><span class="m-num">02</span></div>
-        <div class="m-card-body"><h3 class="m-h">Packs de Conteúdos</h3><p class="m-p">(Etapas: Direcionar + Aplicar)</p></div>
-        <div class="m-tooltip">Produção contínua de conteúdo com estratégia, para sair do improviso e construir presença com consistência.
-Ideal para manter frequência com intenção.</div>
-      </div>
-      <div class="m-card pivot rv d2" tabindex="0" aria-label="Dica da etapa 03: Estruturar">
-        <div class="m-card-top"><span class="m-num">03</span><span class="m-badge">MAIS VENDIDO</span></div>
+      <!-- Packs de Conteúdos removido conforme solicitacao -->
+      <div class="m-card pivot rv d2" tabindex="0" aria-label="Dica da etapa 02: Estruturar">
+        <div class="m-card-top"><span class="m-num">02</span><span class="m-badge">MAIS VENDIDO</span></div>
         <div class="m-card-body"><h3 class="m-h">Estratégia e Direcionamento</h3><p class="m-p">(Etapas: Método completo)</p></div>
         <div class="m-tooltip">Aqui a gente trabalha o processo como um todo: entendimento, organização, definição e acompanhamento.
 Para quem quer crescer com mais clareza e segurança.</div>
       </div>
-      <div class="m-card rv d3" tabindex="0" aria-label="Dica da etapa 04: Direcionar">
-        <div class="m-card-top"><span class="m-num">04</span></div>
+      <div class="m-card rv d3" tabindex="0" aria-label="Dica da etapa 03: Direcionar">
+        <div class="m-card-top"><span class="m-num">03</span></div>
         <div class="m-card-body"><h3 class="m-h">Performance</h3><p class="m-p">(Etapas: Direcionar + Aplicar)</p></div>
         <div class="m-tooltip">Ajustes e decisões baseadas no que está funcionando, para melhorar consistência e evolução do conteúdo.
 Para quem já começou e quer evoluir com estratégia.</div>
       </div>
-      <div class="m-card rv d4" tabindex="0" aria-label="Dica da etapa 05: Aplicar">
-        <div class="m-card-top"><span class="m-num">05</span></div>
+      <div class="m-card rv d4" tabindex="0" aria-label="Dica da etapa 04: Aplicar">
+        <div class="m-card-top"><span class="m-num">04</span></div>
         <div class="m-card-body"><h3 class="m-h">Cobertura de Eventos</h3><p class="m-p">(Clarear + Direcionar + Aplicar)</p></div>
         <div class="m-tooltip">Captação e produção de conteúdo mobile em tempo real para eventos, palestras e momentos importantes da sua marca. Seja storymaker ou videomaker. 
 Transforma presença em posicionamento.</div>
       </div>
         <div class="m-card rv d3" tabindex="0" aria-label="Dica da etapa 06: Projetos Personalizados">
-        <div class="m-card-top"><span class="m-num">06</span></div>
+        <div class="m-card-top"><span class="m-num">05</span></div>
         <div class="m-card-body"><h3 class="m-h">Projetos Personalizados</h3><p class="m-p">(Aplicação sob medida)</p></div>
         <div class="m-tooltip">Se você precisa de algo específico, a gente entende seu momento e constrói um caminho alinhado com o método.
 Solução adaptada à sua necessidade.</div>
@@ -1428,7 +1424,7 @@ Solução adaptada à sua necessidade.</div>
           <select id="ctaAssunto" required>
             <option value="" selected disabled>Selecione</option>
             <option value="Estruturacao de Perfil">Estruturação de Perfil</option>
-            <option value="Packs de Conteudos">Packs de Conteúdos</option>
+            <!-- opção 'Packs de Conteúdos' removida -->
             <option value="Estrategia e Direcionamento">Estratégia e Direcionamento</option>
             <option value="Performance">Performance</option>
             <option value="Cobertura de Eventos">Cobertura de Eventos</option>
