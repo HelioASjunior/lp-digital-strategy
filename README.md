@@ -9,7 +9,7 @@ Este projeto foi construído como uma página única (one page), com seções es
 - apresentar identidade e proposta da marca;
 - destacar entregas e método de trabalho;
 - reforçar tom de voz e público-alvo;
-- captar leads por meio de formulário com redirecionamento para WhatsApp.
+- captar leads por meio de links diretos para o WhatsApp com mensagem pronta.
 
 ## Objetivos da página
 
@@ -34,7 +34,8 @@ Este projeto foi construído como uma página única (one page), com seções es
 - animações de entrada ao rolar a página;
 - menu adaptado para dispositivos móveis;
 - seção de método com cards responsivos;
-- formulário de contato no bloco final com envio para WhatsApp.
+- botões de contato com mensagens pré-preenchidas no WhatsApp, por assunto;
+- SEO: canonical, Open Graph, dados estruturados (schema.org), robots.txt e sitemap.xml.
 
 ## Como executar localmente
 
@@ -62,7 +63,7 @@ Para adaptar a landing page para outra marca:
 - altere os textos institucionais e chamadas de ação;
 - atualize cores e tipografia no bloco de variáveis CSS;
 - ajuste links de navegação e contato;
-- configure o texto padrão enviado ao WhatsApp no script final.
+- ajuste o texto pré-preenchido nos links wa.me.
 
 ## Boas práticas recomendadas
 
